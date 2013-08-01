@@ -543,3 +543,59 @@ Express server listening on port 80
 [90mGET /img/header-footer.png [36m304 [90m4ms[0m
 [90mGET /font/fontawesome-webfont.woff [36m304 [90m1ms[0m
 [90mGET /img/content.png [36m304 [90m1ms[0m
+[90mGET / [32m200 [90m17ms - 9.89kb[0m
+[90mGET /css/bootstrap-responsive.min.css [32m200 [90m18ms - 15.59kb[0m
+[90mGET /css/font-awesome-ie7.css [32m200 [90m6ms - 22.67kb[0m
+[90mGET /css/font-awesome.css [32m200 [90m2ms - 14.26kb[0m
+[90mGET /css/boot-business.css [32m200 [90m10ms - 5.76kb[0m
+[90mGET /css/bootstrap.min.css [32m200 [90m142ms - 107.73kb[0m
+[90mGET /js/jquery.min.js [32m200 [90m138ms - 92.62kb[0m
+[90mGET /js/bootstrap.min.js [32m200 [90m3ms - 25.11kb[0m
+[90mGET /js/boot-business.js [32m200 [90m3ms - 1kb[0m
+[90mGET /img/overdue-bill.jpg [32m200 [90m12ms - 57.26kb[0m
+[90mGET /img/weight-lifting.jpg [32m200 [90m264ms - 136.11kb[0m
+[90mGET /img/header-footer.png [32m200 [90m10ms - 277b[0m
+[90mGET /img/content.png [32m200 [90m9ms - 10.44kb[0m
+[90mGET /img/gym.jpg [32m200 [90m628ms - 636.27kb[0m
+[90mGET /font/fontawesome-webfont.woff [32m200 [90m3ms - 40.77kb[0m
+[90mGET /img/spinBikes.jpg [32m200 [90m2780ms - 1.37mb[0m
+[90mGET /about.html [32m200 [90m12ms - 5.25kb[0m
+[90mGET /css/bootstrap.min.css [36m304 [90m0ms[0m
+[90mGET /css/bootstrap-responsive.min.css [36m304 [90m0ms[0m
+[90mGET /css/font-awesome.css [36m304 [90m1ms[0m
+[90mGET /css/font-awesome-ie7.css [36m304 [90m1ms[0m
+[90mGET /css/boot-business.css [36m304 [90m1ms[0m
+[90mGET /js/jquery.min.js [36m304 [90m1ms[0m
+[90mGET /js/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /js/boot-business.js [36m304 [90m1ms[0m
+[90mGET /img/header-footer.png [36m304 [90m1ms[0m
+[90mGET /img/content.png [36m304 [90m0ms[0m
+[90mGET /font/fontawesome-webfont.woff [36m304 [90m1ms[0m
+[90mGET /faq.html [32m200 [90m14ms - 5.26kb[0m
+[90mGET /css/bootstrap.min.css [36m304 [90m0ms[0m
+[90mGET /css/bootstrap-responsive.min.css [36m304 [90m0ms[0m
+[90mGET /css/font-awesome.css [36m304 [90m0ms[0m
+[90mGET /css/boot-business.css [36m304 [90m1ms[0m
+[90mGET /css/font-awesome-ie7.css [36m304 [90m1ms[0m
+[90mGET /js/jquery.min.js [36m304 [90m1ms[0m
+[90mGET /js/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /js/boot-business.js [36m304 [90m1ms[0m
+[90mGET /contact_us.html [32m200 [90m9ms - 4.27kb[0m
+[90mGET /css/bootstrap-responsive.min.css [36m304 [90m0ms[0m
+[90mGET /css/font-awesome-ie7.css [36m304 [90m0ms[0m
+[90mGET /css/font-awesome.css [36m304 [90m0ms[0m
+[90mGET /js/jquery.min.js [36m304 [90m0ms[0m
+[90mGET /css/boot-business.css [36m304 [90m1ms[0m
+[90mGET /css/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /js/boot-business.js [36m304 [90m0ms[0m
+[90mGET /js/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /faq.html [36m304 [90m1ms[0m
+[90mGET /css/bootstrap-responsive.min.css [36m304 [90m1ms[0m
+[90mGET /css/font-awesome-ie7.css [36m304 [90m1ms[0m
+[90mGET /js/jquery.min.js [36m304 [90m1ms[0m
+[90mGET /css/font-awesome.css [36m304 [90m0ms[0m
+[90mGET /css/boot-business.css [36m304 [90m1ms[0m
+[90mGET /css/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /js/bootstrap.min.js [36m304 [90m0ms[0m
+[90mGET /js/boot-business.js [36m304 [90m0ms[0m
+[90mGET http://gameframe.net/headers [33m404 [90m1ms[0m
