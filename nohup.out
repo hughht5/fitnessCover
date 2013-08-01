@@ -1,0 +1,26 @@
+1 Aug 12:21:08 - [33m[nodemon] v0.7.8[0m
+1 Aug 12:21:08 - [33m[nodemon] to restart at any time, enter `rs`[0m
+1 Aug 12:21:08 - [32m[nodemon] watching: /home/ubuntu/fitnessCover[0m
+1 Aug 12:21:08 - [nodemon] exception in nodemon killing node
+Error: EBADF, read
+1 Aug 12:21:08 - [32m[nodemon] Unable to write to temp directory. If you experience problems with file reloading, ensure /tmp is writable.[0m
+1 Aug 12:21:08 - [32m[nodemon] starting `node app.js`[0m
+Express server listening on port 3000
+[90mGET / [32m200 [90m411ms - 170b[0m
+[90mGET /stylesheets/style.css [36m304 [90m4ms[0m
+[90mGET / [32m200 [90m14ms - 170b[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /hi [32m200 [90m1ms[0m
+[90mGET / [32m200 [90m12ms - 170b[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+1 Aug 12:23:38 - [nodemon] restarting due to changes...
+1 Aug 12:23:38 - [nodemon] /home/ubuntu/fitnessCover/app.js
+
+
+1 Aug 12:23:38 - [32m[nodemon] starting `node app.js`[0m
+Express server listening on port 3000
+[90mGET / [32m200 [90m676ms - 170b[0m
+[90mGET /stylesheets/style.css [36m304 [90m5ms[0m
+[90mGET /hi [32m200 [90m1ms[0m
+[90mGET / [32m200 [90m23ms - 170b[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
