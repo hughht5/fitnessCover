@@ -23,7 +23,7 @@ app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 //to view html pages
-app.register('.html', require('jade'));
+app.engine('.html', require('jade'));
 
 
 // development only
