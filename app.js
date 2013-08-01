@@ -28,7 +28,6 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-//app.get('/', 'public/index.html');
 app.get('/users', user.list);
 
 app.get('/hi', function (req, res) {
