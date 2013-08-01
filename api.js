@@ -3,6 +3,7 @@ var mongo = require('mongodb');
 var Server = mongo.Server,
     Db = mongo.Db,
     BSON = mongo.BSONPure;
+
  
 var server = new Server('localhost', 27017, {auto_reconnect: true});
 db = new Db('classes', server);
@@ -37,7 +38,7 @@ exports.findAll = function(req, res) {
 };
  
 exports.addClass = function(req, res) {
-    var wine = req.body;
+    var coverClass = req.body;
     console.log('Adding class: ' + JSON.stringify(wine));
     db.collection('classes', function(err, collection) {
         collection.insert(wine, {safe:true}, function(err, result) {
@@ -53,7 +54,7 @@ exports.addClass = function(req, res) {
  
 exports.updateClass = function(req, res) {
     var id = req.params.id;
-    var wine = req.body;
+    var coverClass = req.body;
     console.log('Updating class: ' + id);
     console.log(JSON.stringify(wine));
     db.collection('classes', function(err, collection) {
@@ -83,4 +84,10 @@ exports.deleteClass = function(req, res) {
         });
     });
 }
+
+
+
+
+
+
 

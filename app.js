@@ -35,6 +35,10 @@ app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/api/classes',api.findAll);
 app.get('/api/classes:id',api.findById);
+app.post('/api/classes',api.addClass);
+app.put('/api/classes:id',api.updateClass);
+app.delete('/api/classes:id',api.findById);
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
