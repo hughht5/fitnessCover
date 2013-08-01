@@ -28,9 +28,8 @@ if ('development' == app.get('env')) {
 }
 
 //app.get('/', routes.index);
-app.get('/index', 'public/index.html');
+app.get('/', 'public/index.html');
 app.get('/users', user.list);
-app.get()
 
 app.get('/hi', function (req, res) {
   res.end('Hi there hugh!')
