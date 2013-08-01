@@ -40,9 +40,9 @@ exports.findAll = function(req, res) {
  
 exports.addClass = function(req, res) {
     var coverClass = req.body;
-    console.log('Adding class: ' + JSON.stringify(wine));
+    console.log('Adding class: ' + JSON.stringify(coverClass));
     db.collection('classes', function(err, collection) {
-        collection.insert(wine, {safe:true}, function(err, result) {
+        collection.insert(coverClass, {safe:true}, function(err, result) {
             if (err) {
                 res.send({'error':'An error has occurred'});
             } else {
@@ -57,15 +57,15 @@ exports.updateClass = function(req, res) {
     var id = req.params.id;
     var coverClass = req.body;
     console.log('Updating class: ' + id);
-    console.log(JSON.stringify(wine));
+    console.log(JSON.stringify(coverClass));
     db.collection('classes', function(err, collection) {
-        collection.update({'_id':new BSON.ObjectID(id)}, wine, {safe:true}, function(err, result) {
+        collection.update({'_id':new BSON.ObjectID(id)}, coverClass, {safe:true}, function(err, result) {
             if (err) {
                 console.log('Error updating class: ' + err);
                 res.send({'error':'An error has occurred'});
             } else {
                 console.log('' + result + ' document(s) updated');
-                res.send(wine);
+                res.send(coverClass);
             }
         });
     });
