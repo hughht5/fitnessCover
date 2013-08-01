@@ -396,3 +396,150 @@ Express server listening on port 80
 [90mGET /img/header-footer.png [36m304 [90m1ms[0m
 [90mGET /img/content.png [36m304 [90m0ms[0m
 [90mGET /font/fontawesome-webfont.woff [36m304 [90m0ms[0m
+[90mGET /fitnesscover [33m404 [90m2ms[0m
+[90mGET /about.html [32m200 [90m6ms - 5.25kb[0m
+[90mGET /js/bootstrap.min.js [32m200 [90m13ms - 25.11kb[0m
+[90mGET /js/boot-business.js [32m200 [90m3ms - 1kb[0m
+[90mGET /css/bootstrap-responsive.min.css [32m200 [90m2ms - 15.59kb[0m
+[90mGET /css/font-awesome.css [32m200 [90m1ms - 14.26kb[0m
+[90mGET /css/font-awesome-ie7.css [32m200 [90m1ms - 22.67kb[0m
+[90mGET /css/boot-business.css [32m200 [90m1ms - 5.76kb[0m
+[90mGET /css/bootstrap.min.css [32m200 [90m94ms - 107.73kb[0m
+[90mGET /js/jquery.min.js [32m200 [90m101ms - 92.62kb[0m
+[90mGET /img/content.png [32m200 [90m1ms - 10.44kb[0m
+[90mGET /font/fontawesome-webfont.ttf [32m200 [90m90ms - 66.87kb[0m
+[90mGET /js/jquery.min.js [36m304 [90m1ms[0m
+[90mGET /img/header-footer.png [32m200 [90m1ms - 277b[0m
+[90mGET /faq.html [32m200 [90m1ms - 5.26kb[0m
+[90mGET /js/jquery.min.js [36m304 [90m1ms[0m
+[90mGET /css/font-awesome.css [36m304 [90m0ms[0m
+[90mGET /css/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /css/font-awesome-ie7.css [36m304 [90m1ms[0m
+[90mGET /js/boot-business.js [36m304 [90m0ms[0m
+[90mGET /css/boot-business.css [36m304 [90m1ms[0m
+[90mGET /js/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /css/bootstrap-responsive.min.css [36m304 [90m1ms[0m
+[90mGET /js/jquery.min.js [36m304 [90m1ms[0m
+[90mGET /font/fontawesome-webfont.ttf [36m304 [90m0ms[0m
+[90mGET /img/header-footer.png [36m304 [90m1ms[0m
+[90mGET /img/content.png [36m304 [90m1ms[0m
+[90mGET /contact_us.html [32m200 [90m2ms - 4.27kb[0m
+[90mGET /css/bootstrap-responsive.min.css [36m304 [90m1ms[0m
+[90mGET /css/font-awesome-ie7.css [36m304 [90m4ms[0m
+[90mGET /js/jquery.min.js [36m304 [90m1ms[0m
+[90mGET /js/bootstrap.min.js [36m304 [90m2ms[0m
+[90mGET /js/boot-business.js [36m304 [90m1ms[0m
+[90mGET /css/bootstrap.min.css [36m304 [90m2ms[0m
+[90mGET /css/font-awesome.css [36m304 [90m2ms[0m
+[90mGET /css/boot-business.css [36m304 [90m0ms[0m
+[90mGET /img/header-footer.png [36m304 [90m1ms[0m
+[90mGET /font/fontawesome-webfont.ttf [36m304 [90m1ms[0m
+[90mGET /img/content.png [36m304 [90m1ms[0m
+[90mGET /js/jquery.min.js [36m304 [90m1ms[0m
+[90mGET /signup.html [32m200 [90m1ms - 3.97kb[0m
+[90mGET /js/jquery.min.js [36m304 [90m0ms[0m
+[90mGET /css/font-awesome.css [36m304 [90m1ms[0m
+[90mGET /css/boot-business.css [36m304 [90m0ms[0m
+[90mGET /css/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /js/bootstrap.min.js [36m304 [90m0ms[0m
+[90mGET /css/bootstrap-responsive.min.css [36m304 [90m0ms[0m
+[90mGET /css/font-awesome-ie7.css [36m304 [90m1ms[0m
+[90mGET /js/boot-business.js [36m304 [90m1ms[0m
+[90mGET /font/fontawesome-webfont.ttf [36m304 [90m1ms[0m
+[90mGET /img/content.png [36m304 [90m0ms[0m
+[90mGET /img/header-footer.png [36m304 [90m1ms[0m
+[90mGET /js/jquery.min.js [36m304 [90m1ms[0m
+[90mGET /signupGiveCover.html [32m200 [90m3ms - 8.54kb[0m
+[90mGET /css/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /css/bootstrap-responsive.min.css [36m304 [90m1ms[0m
+[90mGET /css/font-awesome.css [36m304 [90m1ms[0m
+[90mGET /js/bootstrap.min.js [36m304 [90m0ms[0m
+[90mGET /css/boot-business.css [36m304 [90m0ms[0m
+[90mGET /js/boot-business.js [36m304 [90m0ms[0m
+[90mGET /js/jquery.min.js [36m304 [90m0ms[0m
+[90mGET /css/font-awesome-ie7.css [36m304 [90m1ms[0m
+[90mGET /js/jquery.min.js [36m304 [90m1ms[0m
+[90mGET /font/fontawesome-webfont.ttf [36m304 [90m1ms[0m
+[90mGET /img/content.png [36m304 [90m1ms[0m
+[90mGET /img/header-footer.png [36m304 [90m0ms[0m
+[90mGET /signupGetCover.html [32m200 [90m2ms - 9.36kb[0m
+[90mGET /css/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /css/boot-business.css [36m304 [90m1ms[0m
+[90mGET /js/boot-business.js [36m304 [90m0ms[0m
+[90mGET /js/bootstrap.min.js [36m304 [90m0ms[0m
+[90mGET /css/bootstrap-responsive.min.css [36m304 [90m0ms[0m
+[90mGET /css/font-awesome.css [36m304 [90m0ms[0m
+[90mGET /js/jquery.min.js [36m304 [90m1ms[0m
+[90mGET /css/font-awesome-ie7.css [36m304 [90m1ms[0m
+[90mGET /robots.txt [33m404 [90m1ms[0m
+[90mGET / [32m200 [90m10ms - 9.89kb[0m
+[90mGET /index.html [36m304 [90m1ms[0m
+[90mGET /css/bootstrap.min.css [36m304 [90m0ms[0m
+[90mGET /css/font-awesome.css [36m304 [90m1ms[0m
+[90mGET /css/bootstrap-responsive.min.css [36m304 [90m1ms[0m
+[90mGET /css/font-awesome-ie7.css [36m304 [90m0ms[0m
+[90mGET /css/boot-business.css [36m304 [90m1ms[0m
+[90mGET /js/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /js/jquery.min.js [36m304 [90m1ms[0m
+[90mGET /js/boot-business.js [36m304 [90m1ms[0m
+[90mGET /img/spinBikes.jpg [36m304 [90m1ms[0m
+[90mGET /img/overdue-bill.jpg [36m304 [90m0ms[0m
+[90mGET /img/weight-lifting.jpg [36m304 [90m0ms[0m
+[90mGET /img/gym.jpg [36m304 [90m3ms[0m
+[90mGET /img/header-footer.png [36m304 [90m1ms[0m
+[90mGET /font/fontawesome-webfont.woff [36m304 [90m0ms[0m
+[90mGET /img/content.png [36m304 [90m0ms[0m
+[90mGET /index.html [36m304 [90m0ms[0m
+[90mGET /css/bootstrap-responsive.min.css [36m304 [90m0ms[0m
+[90mGET /css/bootstrap.min.css [36m304 [90m0ms[0m
+[90mGET /css/boot-business.css [36m304 [90m2ms[0m
+[90mGET /css/font-awesome-ie7.css [36m304 [90m1ms[0m
+[90mGET /img/spinBikes.jpg [36m304 [90m2ms[0m
+[90mGET /css/font-awesome.css [36m304 [90m1ms[0m
+[90mGET /img/weight-lifting.jpg [36m304 [90m1ms[0m
+[90mGET /img/overdue-bill.jpg [36m304 [90m0ms[0m
+[90mGET /img/gym.jpg [36m304 [90m0ms[0m
+[90mGET /img/content.png [36m304 [90m1ms[0m
+[90mGET /img/header-footer.png [36m304 [90m1ms[0m
+[90mGET /font/fontawesome-webfont.woff [36m304 [90m1ms[0m
+1 Aug 16:43:24 - [nodemon] exiting
+1 Aug 16:43:52 - [33m[nodemon] v0.7.8[0m
+1 Aug 16:43:52 - [33m[nodemon] to restart at any time, enter `rs`[0m
+1 Aug 16:43:52 - [32m[nodemon] watching: /home/ubuntu/fitnessCover[0m
+1 Aug 16:43:53 - [nodemon] exception in nodemon killing node
+Error: EBADF, read
+1 Aug 16:43:53 - [32m[nodemon] Unable to write to temp directory. If you experience problems with file reloading, ensure /tmp is writable.[0m
+1 Aug 16:43:53 - [32m[nodemon] starting `node app.js`[0m
+Express server listening on port 80
+[90mGET /index.html [36m304 [90m7ms[0m
+[90mGET /css/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /css/bootstrap-responsive.min.css [36m304 [90m1ms[0m
+[90mGET /css/font-awesome-ie7.css [36m304 [90m1ms[0m
+[90mGET /css/font-awesome.css [36m304 [90m1ms[0m
+[90mGET /css/boot-business.css [36m304 [90m1ms[0m
+[90mGET /js/jquery.min.js [36m304 [90m0ms[0m
+[90mGET /js/bootstrap.min.js [36m304 [90m0ms[0m
+[90mGET /js/boot-business.js [36m304 [90m2ms[0m
+[90mGET /img/spinBikes.jpg [36m304 [90m1ms[0m
+[90mGET /img/weight-lifting.jpg [36m304 [90m0ms[0m
+[90mGET /img/overdue-bill.jpg [36m304 [90m0ms[0m
+[90mGET /img/gym.jpg [36m304 [90m1ms[0m
+[90mGET /img/header-footer.png [36m304 [90m1ms[0m
+[90mGET /font/fontawesome-webfont.woff [36m304 [90m1ms[0m
+[90mGET /img/content.png [36m304 [90m2ms[0m
+[90mGET /index.html [36m304 [90m2ms[0m
+[90mGET /css/bootstrap.min.css [36m304 [90m318ms[0m
+[90mGET /js/bootstrap.min.js [36m304 [90m468ms[0m
+[90mGET /css/font-awesome-ie7.css [36m304 [90m465ms[0m
+[90mGET /css/font-awesome.css [36m304 [90m465ms[0m
+[90mGET /css/bootstrap-responsive.min.css [36m304 [90m464ms[0m
+[90mGET /css/boot-business.css [36m304 [90m463ms[0m
+[90mGET /js/jquery.min.js [36m304 [90m3ms[0m
+[90mGET /js/boot-business.js [36m304 [90m5ms[0m
+[90mGET /img/spinBikes.jpg [36m304 [90m5ms[0m
+[90mGET /img/overdue-bill.jpg [36m304 [90m5ms[0m
+[90mGET /img/weight-lifting.jpg [36m304 [90m4ms[0m
+[90mGET /img/gym.jpg [36m304 [90m3ms[0m
+[90mGET /img/header-footer.png [36m304 [90m4ms[0m
+[90mGET /font/fontawesome-webfont.woff [36m304 [90m1ms[0m
+[90mGET /img/content.png [36m304 [90m1ms[0m
