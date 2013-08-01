@@ -11,20 +11,19 @@ var express = require('express')
 
 var app = express();
 
+app.set('views', __dirname + '/views');
+app.engine('html', require('ejs').renderFile);
+
 // all environments
 app.set('port', process.env.PORT || 80);
-app.set('views', __dirname + '/views');
-app.set('view engine', 'jade');
+//app.set('views', __dirname + '/views');
+//app.set('view engine', 'jade');
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
-
-//to view html pages
-app.engine('.html', require('jade'));
-
 
 // development only
 if ('development' == app.get('env')) {
