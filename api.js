@@ -127,10 +127,10 @@ exports.findAllInstructors = function(req, res) {
 };
  
 exports.addInstructor = function(req, res) {
-    var coverClass = req.body;
-    console.log('Adding instructor: ' + JSON.stringify(coverClass));
+    var instructor = req.body;
+    console.log('Adding instructor: ' + JSON.stringify(instructor));
     instructordb.collection('instructors', function(err, collection) {
-        collection.insert(coverClass, {safe:true}, function(err, result) {
+        collection.insert(instructor, {safe:true}, function(err, result) {
             if (err) {
                 res.send({'error':'An error has occurred'});
             } else {
@@ -143,23 +143,23 @@ exports.addInstructor = function(req, res) {
  
 exports.updateInstructor = function(req, res) {
     var id = req.params.id;
-    var coverClass = req.body;
+    var instructor = req.body;
     console.log('Updating instructor: ' + id);
-    console.log(JSON.stringify(coverClass));
+    console.log(JSON.stringify(instructor));
     instructordb.collection('instructors', function(err, collection) {
-        collection.update({'_id':new BSON.ObjectID(id)}, coverClass, {safe:true}, function(err, result) {
+        collection.update({'_id':new BSON.ObjectID(id)}, instructor, {safe:true}, function(err, result) {
             if (err) {
                 console.log('Error updating instructor: ' + err);
                 res.send({'error':'An error has occurred'});
             } else {
                 console.log('' + result + ' document(s) updated');
-                res.send(coverClass);
+                res.send(instructor);
             }
         });
     });
 }
  
-exports.deleteClass = function(req, res) {
+exports.deleteInstructor = function(req, res) {
     var id = req.params.id;
     console.log('Deleting instructor: ' + id);
     instructordb.collection('instructors', function(err, collection) {

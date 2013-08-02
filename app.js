@@ -46,7 +46,7 @@ app.get('/api/instructors',api.findAllInstructors);
 app.get('/api/instructors:id',api.findInstructorById);
 app.post('/api/instructors',api.addInstructor);
 app.put('/api/instructors:id',api.updateInstructor);
-//app.delete('/api/instructors:id',api.deleteClass); //security
+//app.delete('/api/instructors:id',api.deleteInstructor); //security
 
 
 http.createServer(app).listen(app.get('port'), function(){
