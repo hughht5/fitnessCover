@@ -2,7 +2,7 @@ function submitInstructor(){
 	console.log("submitting new instructor");
     
     //Do the AJAX post
-    $.post("/api/classes", $("#giveCoverForm").serialize(), function(data){
+    $.post("/api/instructors", $("#giveCoverForm").serialize(), function(data){
         
         //notify user the request has been saved
     	bootbox.alert("Thank you, we will contact you shortly and add you to our books.");
