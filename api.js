@@ -77,7 +77,7 @@ exports.updateClass = function(req, res) {
 exports.deleteClass = function(req, res) {
     var id = req.params.id;
     console.log('Deleting class: ' + id);
-    db.collection('classes', function(err, collection) {
+    classdb.collection('classes', function(err, collection) {
         collection.remove({'_id':new BSON.ObjectID(id)}, {safe:true}, function(err, result) {
             if (err) {
                 res.send({'error':'An error has occurred - ' + err});
@@ -110,8 +110,8 @@ instructordb.open(function(err, instructordb) {
 
 exports.findInstructorById = function(req, res) {
     var id = req.params.id;
-    console.log('Retrieving class: ' + id);
-    db.collection('classes', function(err, collection) {
+    console.log('Retrieving instructors: ' + id);
+    instructordb.collection('instructors', function(err, collection) {
         collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
             res.send(item);
         });
@@ -119,7 +119,7 @@ exports.findInstructorById = function(req, res) {
 };
  
 exports.findAllInstructors = function(req, res) {
-    db.collection('classes', function(err, collection) {
+    instructordb.collection('instructors', function(err, collection) {
         collection.find().toArray(function(err, items) {
             res.send(items);
         });
@@ -128,8 +128,8 @@ exports.findAllInstructors = function(req, res) {
  
 exports.addInstructor = function(req, res) {
     var coverClass = req.body;
-    console.log('Adding class: ' + JSON.stringify(coverClass));
-    db.collection('classes', function(err, collection) {
+    console.log('Adding instructor: ' + JSON.stringify(coverClass));
+    instructordb.collection('instructors', function(err, collection) {
         collection.insert(coverClass, {safe:true}, function(err, result) {
             if (err) {
                 res.send({'error':'An error has occurred'});
@@ -144,12 +144,12 @@ exports.addInstructor = function(req, res) {
 exports.updateInstructor = function(req, res) {
     var id = req.params.id;
     var coverClass = req.body;
-    console.log('Updating class: ' + id);
+    console.log('Updating instructor: ' + id);
     console.log(JSON.stringify(coverClass));
-    db.collection('classes', function(err, collection) {
+    instructordb.collection('instructors', function(err, collection) {
         collection.update({'_id':new BSON.ObjectID(id)}, coverClass, {safe:true}, function(err, result) {
             if (err) {
-                console.log('Error updating class: ' + err);
+                console.log('Error updating instructor: ' + err);
                 res.send({'error':'An error has occurred'});
             } else {
                 console.log('' + result + ' document(s) updated');
@@ -161,8 +161,8 @@ exports.updateInstructor = function(req, res) {
  
 exports.deleteClass = function(req, res) {
     var id = req.params.id;
-    console.log('Deleting class: ' + id);
-    db.collection('classes', function(err, collection) {
+    console.log('Deleting instructor: ' + id);
+    instructordb.collection('instructors', function(err, collection) {
         collection.remove({'_id':new BSON.ObjectID(id)}, {safe:true}, function(err, result) {
             if (err) {
                 res.send({'error':'An error has occurred - ' + err});
