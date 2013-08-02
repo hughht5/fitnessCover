@@ -40,10 +40,6 @@ $(document).ready(function () {
             classRate: {
                 required: true
             }
-        },
-        submitHandler: function (form) { // for demo
-            alert('valid form submitted'); // for demo
-            return false; // for demo
         }
     });
 
@@ -51,6 +47,14 @@ $(document).ready(function () {
 
 
 function submitCover(){
+
+	//validate form
+	$("#getCoverForm").validate();
+
+	if(!$("#getCoverForm").valid()){
+		bootbox.alert("Please fill out the correct fields");
+		return false;
+	}
 
     //Do the AJAX post
     $.post("/api/classes", $("#getCoverForm").serialize(), function(data){
