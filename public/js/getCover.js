@@ -1,5 +1,15 @@
-/*$(document).ready(function(){
-    $("#submit").submit(function(e) {
+function submitCover(){
+	console.log("submitting new class");
+    //Do the AJAX post
+    $.post("/api/classes", $("#getCoverForm").serialize(), function(data){
+        //do stuff here...
+    });
+    //Stop the normal POST
+    return false;
+}
+/*
+$(document).ready(function(){
+    document.getElementById('submit').onsubmit = function(e) {
 
     	e.preventDefault
 
@@ -10,5 +20,6 @@
         });
         //Stop the normal POST
         return false;
-    });
-});*/
+    };
+});
+//*/
