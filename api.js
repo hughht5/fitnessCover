@@ -93,6 +93,8 @@ exports.deleteClass = function(req, res) {
 
 //Instructors database
 
+instructordb = new Db('instructors', server);
+
 instructordb.open(function(err, instructordb) {
     if(!err) {
         console.log("Connected to 'instructors' database");
