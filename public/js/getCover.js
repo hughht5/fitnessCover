@@ -1,6 +1,49 @@
+$(document).ready(function () {
+
+    $('#getCoverForm').validate({ // initialize the plugin
+        rules: {
+            firstName: {
+                required: true,
+                minlength: 2
+            },
+            lastName: {
+                required: true,
+                minlength: 2
+            },
+            email: {
+                required: true,
+                email: true
+            },
+            mobile: {
+                required: true,
+      			number: true,
+      			minlength: 8
+            },
+            classType: {
+                required: true
+            },
+            classDate: {
+                required: true,
+                date: true
+            },
+            classTime: {
+                required: true
+            },
+            classRate: {
+                required: true
+            }
+        },
+        submitHandler: function (form) { // for demo
+            alert('valid form submitted'); // for demo
+            return false; // for demo
+        }
+    });
+
+});
+
+
 function submitCover(){
-	console.log("submitting new class");
-    
+
     //Do the AJAX post
     $.post("/api/classes", $("#getCoverForm").serialize(), function(data){
         
@@ -9,7 +52,7 @@ function submitCover(){
     	
     	//reset the form
     	document.getElementById("getCoverForm").reset();
-    	
+
     });
 
     //Stop the normal POST

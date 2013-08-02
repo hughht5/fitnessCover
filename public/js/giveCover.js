@@ -1,5 +1,7 @@
 function submitInstructor(){
-	console.log("submitting new instructor");
+
+    //validate the form
+    //TODO
     
     //Do the AJAX post
     $.post("/api/instructors", $("#giveCoverForm").serialize(), function(data){
