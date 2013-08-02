@@ -138,7 +138,7 @@ exports.addInstructor = function(req, res) {
                 res.send(result[0]);
             }
         });
-    });
+    }); 
 }
  
 exports.updateInstructor = function(req, res) {
