@@ -92,8 +92,9 @@ exports.deleteClass = function(req, res) {
 
 
 //Instructors database
+var server2 = new Server('localhost', 27017, {auto_reconnect: true});
 
-instructordb = new Db('instructors', server);
+instructordb = new Db('instructors', server2);
 
 instructordb.open(function(err, instructordb) {
     if(!err) {
