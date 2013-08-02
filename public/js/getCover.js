@@ -1,5 +1,5 @@
-$(document).ready(function(){
-    $("#submit").onClick(function(e) {
+/*$(document).ready(function(){
+    $("#submit").submit(function(e) {
 
     	e.preventDefault
 
@@ -11,4 +11,4 @@ $(document).ready(function(){
         //Stop the normal POST
         return false;
     });
-});
+});*/
