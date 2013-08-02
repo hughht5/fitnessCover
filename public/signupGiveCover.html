@@ -53,7 +53,7 @@
             <h4 class="widget-header">Sign up for more Cover Hours!</h4>
             <div class="widget-body">
               <div class="center-align">
-                <form class="form-horizontal">
+                <form id="giveCoverForm" class="form-horizontal">
                   <fieldset>
 
                     <legend>
@@ -151,7 +151,7 @@
                     <div class="control-group">
                       <label class="control-label" for="submit">Submit</label>
                       <div class="controls">
-                        <button id="submit" name="submit" class="btn btn-primary">Submit</button>
+                        <button id="submit" name="submit" class="btn btn-primary" onclick="return submitInstructor()">Submit</button>
                       </div>
                     </div>
 
@@ -207,5 +207,7 @@
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/boot-business.js"></script>
+    <script type="text/javascript" src="js/bootbox.min.js"></script>
+    <script type="text/javascript" src="js/giveCover.js"></script>
   </body>
 </html>
