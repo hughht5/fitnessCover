@@ -5,6 +5,7 @@ function submitCover(){
     $.post("/api/classes", $("#getCoverForm").serialize(), function(data){
         //notify user the request has been saved
         alert("Your request for cover has been saved. You will be notified by email to confirm whether we find cover for you.")
+    	document.getElementById("getCoverForm").reset();
     });
 
     //Stop the normal POST
