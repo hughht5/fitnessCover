@@ -1,5 +1,13 @@
 $(document).ready(function () {
 
+	//stop form beeing submitted with the enter key
+	$(window).keydown(function(event){
+		if(event.keyCode == 13) {
+	    	event.preventDefault();
+	      	return false;
+	    }
+	});
+
     $('#getCoverForm').validate({ // initialize the plugin
         rules: {
             firstName: {
