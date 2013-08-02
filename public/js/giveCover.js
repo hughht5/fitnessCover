@@ -1,7 +1,58 @@
+$(document).ready(function () {
+
+    //stop form beeing submitted with the enter key
+    $(window).keydown(function(event){
+        if(event.keyCode == 13) {
+            event.preventDefault();
+            return false;
+        }
+    });
+
+    $('#giveCoverForm').validate({ // initialize the plugin
+        rules: {
+            firstName: {
+                required: true,
+                minlength: 2
+            },
+            lastName: {
+                required: true,
+                minlength: 2
+            },
+            email: {
+                required: true,
+                email: true
+            },
+            mobile: {
+                required: true,
+                number: true,
+                minlength: 8
+            },
+            qualifications: {
+                required: true
+            },
+            location: {
+                required: true
+            },
+            acc: {
+                number: true
+            },
+            sort: {
+                required: true
+            }
+        }
+    });
+
+});
+
 function submitInstructor(){
 
-    //validate the form
-    //TODO
+    //validate  form
+    $("#giveCoverForm").validate();
+
+    if(!$("#giveCoverForm").valid()){
+        bootbox.alert("Please fill out the correct fields");
+        return false;
+    }
     
     //Do the AJAX post
     $.post("/api/instructors", $("#giveCoverForm").serialize(), function(data){
