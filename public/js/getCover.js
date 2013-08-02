@@ -1,5 +1,7 @@
 $(document).ready(function(){
-    $("#submit").submit(function(e) {
+    $("#submit").onClick(function(e) {
+
+    	e.preventDefault
 
     	console.log("submitting new class");
         //Do the AJAX post

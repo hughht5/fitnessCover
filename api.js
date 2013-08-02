@@ -33,7 +33,6 @@ exports.findAll = function(req, res) {
     db.collection('classes', function(err, collection) {
         collection.find().toArray(function(err, items) {
             res.send(items);
-            console.log("Requested all classes.");
         });
     });
 };
