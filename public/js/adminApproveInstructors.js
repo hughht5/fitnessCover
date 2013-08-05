@@ -56,12 +56,15 @@ function addRow(instructor){
     locations.innerHTML=locationsHTML;
 
     //var buttonHTML = "button goes here"
-    var buttonHTML='<button>Approve</button>';
+    var buttonHTML='<button onclick="approve(instructor._id)">Approve</button>';
     approve.innerHTML = buttonHTML;
 
 }
 
 
+function approve (id){
+    console.log(id);
+}
 
 
 
