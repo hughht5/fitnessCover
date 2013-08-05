@@ -62,12 +62,9 @@ function addRow(instructor){
 }
 
 
-function approve (idparam){
-    var postData = {
-        id : idparam
-    };
+function approve (id){
 
-    $.post("/api/instructorsApprove", postData, function(data){
+    $.post("/api/instructorsApprove:"+id, function(data){
         console.log(data);
     });
 }
