@@ -15,6 +15,13 @@ function getNewInstructors(){
 }
 
 function addRow(instructor){
+
+    qualificationsHTML = "";
+
+    for (var x=0; x<instructor.qualifications.length; x++){
+        qualificationsHTML += instructor.qualifications[x] + "<br>";
+    }
+
     var table=document.getElementById("newInstructors");
     var row=table.insertRow(-1);
     var firstName=row.insertCell(0);
@@ -32,7 +39,7 @@ function addRow(instructor){
     mobile.innerHTML=instructor.mobile;
     acc.innerHTML=instructor.acc;
     sort.innerHTML=instructor.sort;
-    qualifications.innerHTML="qual array<br/>asdf";
+    qualifications.innerHTML=qualificationsHTML;
     locations.innerHTML="loc array";
 
 }
