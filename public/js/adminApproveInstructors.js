@@ -1,28 +1,13 @@
 $(document).ready(function () {
 
+    getNewInstructors();
+
 });
 
-function submitInstructor(){
 
-    //validate  form
-    $("#giveCoverForm").validate();
-
-    if(!$("#giveCoverForm").valid()){
-        bootbox.alert("Please fill out the correct fields");
-        return false;
-    }
-    
-    //Do the AJAX post
-    $.post("/api/instructors", $("#giveCoverForm").serialize(), function(data){
-        
-        //notify user the request has been saved
-    	bootbox.alert("Thank you, we will contact you shortly and add you to our books.");
-    	
-    	//reset the form
-    	document.getElementById("giveCoverForm").reset();
-    	
+//query mongo and add results to the table
+function getNewInstructors(){
+    $.get("/api/instructors", function(data){
+        console.log(data);
     });
-
-    //Stop the normal POST
-    return false;
 }
