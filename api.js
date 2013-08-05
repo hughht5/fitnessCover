@@ -159,7 +159,7 @@ exports.approveInstructor = function(req, res) {
     var id = req.params.id;
 
     var v1 = {
-        _id: ObjectId(id)
+        _id: id
     };
     var v2 = {
         $set:{
