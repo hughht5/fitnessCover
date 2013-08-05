@@ -131,8 +131,8 @@ exports.findAllInstructors = function(req, res) {
 exports.findNewInstructors = function(req, res) {
     var confirmed = {
         'confirmed': {
-            "$exists:false"
-        };
+            "$exists":false
+        }
     };
     instructordb.collection('instructors', function(err, collection) {
         collection.find(confirmed).toArray(function(err, items) {
