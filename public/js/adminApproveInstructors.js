@@ -64,6 +64,9 @@ function addRow(instructor){
 
 function approve (id){
     console.log(id);
+     $.post("/api/instructorsApprove", id, function(data){
+        console.log(data);
+    });
 }
 
 

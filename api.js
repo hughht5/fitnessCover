@@ -134,7 +134,7 @@ exports.findNewInstructors = function(req, res) {
             "$exists":false
         }
     };
-    
+
     instructordb.collection('instructors', function(err, collection) {
         collection.find(confirmed).toArray(function(err, items) {
             res.send(items);
@@ -149,6 +149,26 @@ exports.findApprovedInstructors = function(req, res) {
 
     instructordb.collection('instructors', function(err, collection) {
         collection.find(approved).toArray(function(err, items) {
+            res.send(items);
+        });
+    });
+};
+
+exports.approveInstructor = function(req, res) {
+
+    var id = req.params.id;
+
+    var v1 = {
+        _id: ObjectId(id)
+    };
+    var v2 = {
+        $set:{
+            confirmed:true
+        }
+    };
+
+    instructordb.collection('instructors', function(err, collection) {
+        collection.update(v1,v2).toArray(function(err, items) {
             res.send(items);
         });
     });
