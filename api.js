@@ -134,6 +134,7 @@ exports.findNewInstructors = function(req, res) {
             "$exists":false
         }
     };
+    
     instructordb.collection('instructors', function(err, collection) {
         collection.find(confirmed).toArray(function(err, items) {
             res.send(items);
@@ -142,8 +143,12 @@ exports.findNewInstructors = function(req, res) {
 };
 
 exports.findApprovedInstructors = function(req, res) {
+    var approved = {
+        'approved': true
+    };
+
     instructordb.collection('instructors', function(err, collection) {
-        collection.find().toArray(function(err, items) {
+        collection.find(approved).toArray(function(err, items) {
             res.send(items);
         });
     });
