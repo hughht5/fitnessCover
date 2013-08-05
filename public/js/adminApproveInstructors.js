@@ -67,7 +67,7 @@ function approve (idparam){
         id : idparam
     };
 
-    $.post("/api/instructorsApprove", id, function(data){
+    $.post("/api/instructorsApprove", postData, function(data){
         console.log(data);
     });
 }
