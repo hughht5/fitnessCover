@@ -153,27 +153,6 @@ exports.findApprovedInstructors = function(req, res) {
         });
     });
 };
-
-exports.approveInstructor = function(req, res) {
-
-    var id = req.params.id;
-
-    var v1 = {
-        _id: id
-    };
-    var v2 = {
-        $set:{
-            confirmed:true
-        }
-    };
-    console.log(id);
-
-    instructordb.collection('instructors', function(err, collection) {
-        collection.update(v1,v2).toArray(function(err, items) {
-            res.send(items);
-        });
-    });
-};
  
 exports.addInstructor = function(req, res) {
     var instructor = req.body;
