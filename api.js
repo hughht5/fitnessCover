@@ -13,7 +13,7 @@ var server = new Server('localhost', 27017, {auto_reconnect: true});
 classdb = new Db('classes', server);
  
 classdb.open(function(err, classdb) {
-    classdb.authenticate('fitnessCover', 'iamLHta7BAhD', function(err, success) {
+//    classdb.authenticate('fitnessCover', 'iamLHta7BAhD', function(err, success) {
         if(!err) {
             console.log("Connected to 'classes' database");
             classdb.collection('classes', {strict:true}, function(err, collection) {
@@ -22,7 +22,7 @@ classdb.open(function(err, classdb) {
                 }
             });
         }
-    });
+//    });
 });
 
 exports.findClassById = function(req, res) {
