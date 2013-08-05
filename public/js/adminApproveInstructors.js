@@ -56,18 +56,18 @@ function addRow(instructor){
     locations.innerHTML=locationsHTML;
 
     //var buttonHTML = "button goes here"
-    var buttonHTML='<button onclick="approve(\''+instructor+'\')">Approve</button>';
+    var buttonHTML='<button onclick="approve(\''+instructor._id+'\')">Approve</button>';
     approve.innerHTML = buttonHTML;
 
 }
 
 
-function approve (instructor){
+function approve (id){
 
     instructor.confirmed = true;
 
     $.ajax({
-        url: "/api/instructors/"+instructor._id,
+        url: "/api/instructors/"+id,
         data: instructor,
         type: 'PUT',
         success: function(data) {
