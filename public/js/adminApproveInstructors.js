@@ -8,7 +8,9 @@ $(document).ready(function () {
 //query mongo and add results to the table
 function getNewInstructors(){
     $.get("/api/instructorsNew", function(data){
-        addRow(1);
+        for (var x=0;x<data.length;x++){
+            addRow(data[x]);
+        }
     });
 }
 
@@ -24,12 +26,12 @@ function addRow(instructor){
     var qualifications=row.insertCell(6);
     var locations=row.insertCell(7);
 
-    firstName.innerHTML="hguh";
-    lastName.innerHTML="last";
-    email.innerHTML="mail";
-    mobile.innerHTML="mobile";
-    acc.innerHTML="acc";
-    sort.innerHTML="sort";
+    firstName.innerHTML=instructor.firstName;
+    lastName.innerHTML=instructor.lastName;
+    email.innerHTML=instructor.email;
+    mobile.innerHTML=instructor.mobile;
+    acc.innerHTML=instructor.acc;
+    sort.innerHTML=instructor.sort;
     qualifications.innerHTML="qual array";
     locations.innerHTML="loc array";
 
