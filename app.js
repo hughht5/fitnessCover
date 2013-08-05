@@ -43,6 +43,8 @@ app.put('/api/classes:id',api.updateClass);
 
 //instructors
 app.get('/api/instructors',api.findAllInstructors);
+app.get('/api/instructorsNew',api.findNewInstructors);
+app.get('/api/instructorsApproved',api.findApprovedInstructors);
 app.get('/api/instructors:id',api.findInstructorById);
 app.post('/api/instructors',api.addInstructor);
 app.put('/api/instructors:id',api.updateInstructor);

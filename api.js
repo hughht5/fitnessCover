@@ -127,6 +127,22 @@ exports.findAllInstructors = function(req, res) {
         });
     });
 };
+
+exports.findNewInstructors = function(req, res) {
+    instructordb.collection('instructors', function(err, collection) {
+        collection.find("{confirmed:{$exists:false}}").toArray(function(err, items) {
+            res.send(items);
+        });
+    });
+};
+
+exports.findApprovedInstructors = function(req, res) {
+    instructordb.collection('instructors', function(err, collection) {
+        collection.find().toArray(function(err, items) {
+            res.send(items);
+        });
+    });
+};
  
 exports.addInstructor = function(req, res) {
     var instructor = req.body;
