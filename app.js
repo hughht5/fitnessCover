@@ -47,6 +47,7 @@ app.get('/api/instructorsNew',api.findNewInstructors);
 app.get('/api/instructorsApproved',api.findApprovedInstructors);
 app.get('/api/instructors:id',api.findInstructorById);
 app.post('/api/instructors',api.addInstructor);
+app.post('/api/instructorsApprove:id',api.approveInstructor);
 app.put('/api/instructors:id',api.updateInstructor);
 //app.delete('/api/instructors:id',api.deleteInstructor); //security
 
