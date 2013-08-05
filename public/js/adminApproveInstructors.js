@@ -64,11 +64,13 @@ function addRow(instructor){
 
 function approve (id){
 
-    instructor.confirmed = true;
+    var confirmed{
+        confirmed: true
+    };
 
     $.ajax({
         url: "/api/instructors/"+id,
-        data: instructor,
+        data: confirmed,
         type: 'PUT',
         success: function(data) {
             console.log(data);
