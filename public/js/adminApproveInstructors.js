@@ -8,6 +8,29 @@ $(document).ready(function () {
 //query mongo and add results to the table
 function getNewInstructors(){
     $.get("/api/instructorsNew", function(data){
-        console.log(data);
+        addRow(1);
     });
+}
+
+function addRow(instructor){
+    var table=document.getElementById("newInstructors");
+    var row=table.insertRow(-1);
+    var firstName=row.insertCell(0);
+    var lastName=row.insertCell(1);
+    var email=row.insertCell(2);
+    var mobile=row.insertCell(3);
+    var acc=row.insertCell(4);
+    var sort=row.insertCell(5);
+    var qualifications=row.insertCell(6);
+    var locations=row.insertCell(7);
+
+    firstName.innerHTML="hguh";
+    lastName.innerHTML="last";
+    email.innerHTML="mail";
+    mobile.innerHTML="mobile";
+    acc.innerHTML="acc";
+    sort.innerHTML="sort";
+    qualifications.innerHTML="qual array";
+    locations.innerHTML="loc array";
+
 }
