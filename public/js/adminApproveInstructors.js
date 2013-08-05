@@ -22,8 +22,8 @@ function addRow(instructor){
     }
 
     locationsHTML = "";
-    for (var x=0; x<instructor.locations.length; x++){
-        locationsHTML += instructor.locations[x] + "<br>";
+    for (var x=0; x<instructor.location.length; x++){
+        locationsHTML += instructor.location[x] + "<br>";
     }
 
     var table=document.getElementById("newInstructors");
