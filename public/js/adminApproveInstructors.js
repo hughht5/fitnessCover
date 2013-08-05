@@ -64,11 +64,19 @@ function addRow(instructor){
 
 function approve (instructor){
 
-    instructor.confirmed
+    instructor.confirmed = true;
 
-    $.put("/api/instructors/"+instructor._id,instructor, function(data){
-        console.log(data);
+    $.ajax({
+        url: "/api/instructors/"+instructor._id,
+        data: instructor,
+        type: 'PUT',
+        success: function(data) {
+            console.log(data);
+        }
     });
+
+ //   $.put("/api/instructors/"+instructor._id,instructor, function(data){
+   // });
 }
 
 
