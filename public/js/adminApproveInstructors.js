@@ -32,7 +32,7 @@ function addRow(instructor){
     mobile.innerHTML=instructor.mobile;
     acc.innerHTML=instructor.acc;
     sort.innerHTML=instructor.sort;
-    qualifications.innerHTML="qual array";
+    qualifications.innerHTML="qual array<br/>asdf";
     locations.innerHTML="loc array";
 
 }
