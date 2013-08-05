@@ -55,7 +55,14 @@ function addRow(instructor){
     qualifications.innerHTML=qualificationsHTML;
     locations.innerHTML=locationsHTML;
 
-    var buttonHTML = "button goes here"
+    //var buttonHTML = "button goes here"
+    var buttonHTML='<button>Approve</button>';
     approve.innerHTML = buttonHTML;
 
 }
+
+
+
+
+
+
