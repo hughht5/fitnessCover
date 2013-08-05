@@ -17,13 +17,21 @@ function getNewInstructors(){
 function addRow(instructor){
 
     qualificationsHTML = "";
-    for (var x=0; x<instructor.qualifications.length; x++){
-        qualificationsHTML += instructor.qualifications[x] + "<br>";
+    if(Array.isArray(instructor.qualifications)){
+        for (var x=0; x<instructor.qualifications.length; x++){
+            qualificationsHTML += instructor.qualifications[x] + "<br>";
+        }
+    } else{
+        qualificationsHTML = instructor.qualifications + "<br>";
     }
 
     locationsHTML = "";
-    for (var x=0; x<instructor.location.length; x++){
-        locationsHTML += instructor.location[x] + "<br>";
+    if (Array.isArray(instructor.location)){
+        for (var x=0; x<instructor.location.length; x++){
+            locationsHTML += instructor.location[x] + "<br>";
+        }
+    } else {
+        locationsHTML = instructor.location;
     }
 
     var table=document.getElementById("newInstructors");
