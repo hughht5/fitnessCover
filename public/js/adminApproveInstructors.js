@@ -36,6 +36,7 @@ function addRow(instructor){
     var sort=row.insertCell(5);
     var qualifications=row.insertCell(6);
     var locations=row.insertCell(7);
+    var approve = row.insertCell(8);
 
     firstName.innerHTML=instructor.firstName;
     lastName.innerHTML=instructor.lastName;
@@ -45,5 +46,8 @@ function addRow(instructor){
     sort.innerHTML=instructor.sort;
     qualifications.innerHTML=qualificationsHTML;
     locations.innerHTML=locationsHTML;
+
+    var buttonHTML = ""
+    approve.innerHTML = buttonHTML;
 
 }
