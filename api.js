@@ -144,7 +144,7 @@ exports.findNewInstructors = function(req, res) {
 
 exports.findApprovedInstructors = function(req, res) {
     var approved = {
-        'approved': true
+        'confirmed': true
     };
 
     instructordb.collection('instructors', function(err, collection) {
