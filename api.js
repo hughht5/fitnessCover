@@ -13,14 +13,16 @@ var server = new Server('localhost', 27017, {auto_reconnect: true});
 classdb = new Db('classes', server);
  
 classdb.open(function(err, classdb) {
-    if(!err) {
-        console.log("Connected to 'classes' database");
-        classdb.collection('classes', {strict:true}, function(err, collection) {
-            if (err) {
-                console.log("The 'classes' collection is empty!");
-            }
-        });
-    }
+    classdb.authenticate('username', 'password', function(err, success) {
+        if(!err) {
+            console.log("Connected to 'classes' database");
+            classdb.collection('classes', {strict:true}, function(err, collection) {
+                if (err) {
+                    console.log("The 'classes' collection is empty!");
+                }
+            });
+        }
+    });
 });
 
 exports.findClassById = function(req, res) {
