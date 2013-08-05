@@ -64,7 +64,7 @@ function addRow(instructor){
 
 function approve (id){
 
-    var confirmed{
+    var confirmed = {
         confirmed: true
     };
 
