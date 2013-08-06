@@ -69,7 +69,7 @@ function approve (id){
     };
 
     $.ajax({
-        url: "/api/instructorsApprove/",//+id,
+        url: "/api/instructorsApprove/"+id,
         data: confirmed,
         type: 'POST',
         success: function(data) {
