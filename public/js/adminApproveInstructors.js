@@ -71,7 +71,7 @@ function approve (id){
     $.ajax({
         url: "/api/instructorsApprove/"+id,
         data: confirmed,
-        type: 'PUT',
+        type: 'POST',
         success: function(data) {
             console.log(data);
         }
