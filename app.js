@@ -36,19 +36,19 @@ app.get('/users', user.list);
 
 //classes
 app.get('/api/classes',api.findAllClasses);
-app.get('/api/classes:id',api.findClassById);
+app.get('/api/classes/:id',api.findClassById);
 app.post('/api/classes',api.addClass);
-app.put('/api/classes:id',api.updateClass);
+app.put('/api/classes/:id',api.updateClass);
 //app.delete('/api/classes:id',api.deleteClass); //security
 
 //instructors
 app.get('/api/instructors',api.findAllInstructors);
 app.get('/api/instructorsNew',api.findNewInstructors);
 app.get('/api/instructorsApproved',api.findApprovedInstructors);
-app.get('/api/instructors:id',api.findInstructorById);
+app.get('/api/instructors/:id',api.findInstructorById);
 app.post('/api/instructors',api.addInstructor);
-app.post('/api/instructorsApprove:id',api.approveInstructor);
-app.put('/api/instructors:id',api.updateInstructor);
+app.put('/api/instructorsApprove/:id',api.approveInstructor);
+app.put('/api/instructors/:id',api.updateInstructor);
 //app.delete('/api/instructors:id',api.deleteInstructor); //security
 
 
