@@ -158,18 +158,23 @@ exports.approveInstructor = function(req, res) {
 
     var id = req.params.id;
 
-    var v1 = {
+
+    /*var v1 = {
         _id: id
     };
     var v2 = {
         $set:{
             confirmed:true
         }
-    };
+    };*/
+    var instructor = req.body;
+
     console.log(id);
 
     instructordb.collection('instructors', function(err, collection) {
         collection.update(v1,v2).toArray(function(err, items) {
+        collection.update({'_id':new BSON.ObjectID(id)}, instructor, {safe:true}, function(err, result) {
+
             res.send(items);
         });
     });
