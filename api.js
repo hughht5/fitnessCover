@@ -174,7 +174,7 @@ exports.approveInstructor = function(req, res) {
     instructordb.collection('instructors', function(err, collection) {
         //collection.update(v1,v2).toArray(function(err, items) {
         collection.update({'_id':new BSON.ObjectID(id)}, instructor, {safe:true}, function(err, result) {
-            res.send(items);
+            res.send(result);
         });
     });
 }
