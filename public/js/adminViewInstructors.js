@@ -7,7 +7,7 @@ $(document).ready(function () {
 
 //query mongo and add results to the table
 function getInstructors(){
-    $.get("/api/instructors", function(data){
+    $.get("/api/instructorsApproved", function(data){
         for (var x=0;x<data.length;x++){
             addRow(data[x]);
         }
