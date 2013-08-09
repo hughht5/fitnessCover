@@ -44,6 +44,8 @@ function addRow(instructor){
     var sort=row.insertCell(5);
     var qualifications=row.insertCell(6);
     var locations=row.insertCell(7);
+    var remove = row.insertCell(8);
+
 
     firstName.innerHTML=instructor.firstName;
     lastName.innerHTML=instructor.lastName;
@@ -54,8 +56,14 @@ function addRow(instructor){
     qualifications.innerHTML=qualificationsHTML;
     locations.innerHTML=locationsHTML;
 
+    //var buttonHTML = "button goes here"
+    var buttonHTML='<button onclick="remove(\''+instructor._id+'\')">Remove</button>';
+    remove.innerHTML = buttonHTML;
+
 }
 
 
-
+function remove(instructorID){
+    alert("TODO - remove instructor");
+}
 
