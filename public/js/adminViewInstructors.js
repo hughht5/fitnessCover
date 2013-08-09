@@ -62,7 +62,7 @@ function addRow(instructor){
 }
 
 
-function removeInstructor(instructorID){
+function removeInstructor(id){
 
     $.ajax({
         url: "/api/instructorsApprove/"+id,
