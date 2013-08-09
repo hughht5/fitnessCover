@@ -1,12 +1,12 @@
 $(document).ready(function () {
 
-    getNewInstructors();
+    getInstructors();
 
 });
 
 
 //query mongo and add results to the table
-function getNewInstructors(){
+function getInstructors(){
     $.get("/api/instructors", function(data){
         for (var x=0;x<data.length;x++){
             addRow(data[x]);
@@ -34,7 +34,7 @@ function addRow(instructor){
         locationsHTML = instructor.location;
     }
 
-    var table=document.getElementById("newInstructors");
+    var table=document.getElementById("instructors");
     var row=table.insertRow(-1);
     var firstName=row.insertCell(0);
     var lastName=row.insertCell(1);
