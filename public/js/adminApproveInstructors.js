@@ -55,7 +55,6 @@ function addRow(instructor){
     qualifications.innerHTML=qualificationsHTML;
     locations.innerHTML=locationsHTML;
 
-    //var buttonHTML = "button goes here"
     var buttonHTML='<button onclick="approve(\''+instructor._id+'\')">Approve</button>';
     approve.innerHTML = buttonHTML;
 

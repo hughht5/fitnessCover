@@ -56,7 +56,6 @@ function addRow(instructor){
     qualifications.innerHTML=qualificationsHTML;
     locations.innerHTML=locationsHTML;
 
-    //var buttonHTML = "button goes here"
     var buttonHTML='<button onclick="remove(\''+instructor._id+'\')">Remove</button>';
     remove.innerHTML = buttonHTML;
 
