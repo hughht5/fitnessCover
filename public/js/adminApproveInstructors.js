@@ -76,8 +76,12 @@ function approve (id){
         }
     });
 
- //   $.put("/api/instructors/"+instructor._id,instructor, function(data){
-   // });
+    //now reload the table
+    //remove all rows except title
+    $("#newInstructors>thead>tr:not(:first)").remove();
+
+    //reload
+    getNewInstructors();
 }
 
 
