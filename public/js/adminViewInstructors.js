@@ -74,6 +74,12 @@ function removeInstructor(id){
 
     alert("TODO - remove row");
 
-    //now remove this row
+
+    //now reload the table
+    //remove all rows except title
+    $("#instructors>thead>tr:not(:first)").remove();
+
+    //reload
+    getInstructors();
 }
 
