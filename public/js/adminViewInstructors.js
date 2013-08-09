@@ -72,8 +72,6 @@ function removeInstructor(id){
         }
     });
 
-    alert("TODO - remove row");
-
 
     //now reload the table
     //remove all rows except title
