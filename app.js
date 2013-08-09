@@ -39,7 +39,7 @@ app.get('/api/classes',api.findAllClasses);
 app.get('/api/classes/:id',api.findClassById);
 app.post('/api/classes',api.addClass);
 app.put('/api/classes/:id',api.updateClass);
-//app.delete('/api/classes:id',api.deleteClass); //security
+app.delete('/api/classes:id',api.deleteClass); //security
 
 //instructors
 app.get('/api/instructors',api.findAllInstructors);
@@ -49,7 +49,7 @@ app.get('/api/instructors/:id',api.findInstructorById);
 app.post('/api/instructors',api.addInstructor);
 app.put('/api/instructorsApprove/:id',api.approveInstructor);
 app.put('/api/instructors/:id',api.updateInstructor);
-//app.delete('/api/instructors:id',api.deleteInstructor); //security
+app.delete('/api/instructors:id',api.deleteInstructor); //security
 
 
 http.createServer(app).listen(app.get('port'), function(){

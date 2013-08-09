@@ -63,6 +63,17 @@ function addRow(instructor){
 
 
 function removeInstructor(instructorID){
-    alert("TODO - remove instructor");
+
+    $.ajax({
+        url: "/api/instructorsApprove/"+id,
+        type: 'DELETE',
+        success: function(data) {
+            console.log(data);
+        }
+    });
+
+    alert("TODO - remove row");
+
+    //now remove this row
 }
 
