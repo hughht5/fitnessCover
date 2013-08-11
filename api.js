@@ -45,6 +45,12 @@ exports.findAllClasses = function(req, res) {
  
 exports.addClass = function(req, res) {
     var coverClass = req.body;
+    
+    coverClass.instructorAssigned = false;
+    coverClass.instructorPaid = false;
+    coverClass.gymInvoiced = false;
+    coverClass.paidByGym = false;
+
     console.log('Adding class: ' + JSON.stringify(coverClass));
     classdb.collection('classes', function(err, collection) {
         collection.insert(coverClass, {safe:true}, function(err, result) {
