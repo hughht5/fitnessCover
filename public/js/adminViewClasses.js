@@ -31,7 +31,7 @@ function addRow(coverClass){
     var reason = row.insertCell(9);
     var notes = row.insertCell(10);
     var instructorAssigned = row.insertCell(11);
-    var instructorAssigned = row.insertCell(12);
+    var amountDueToInstructor = row.insertCell(12);
     var instructorPaid = row.insertCell(13);
     var gymInvoiced = row.insertCell(14);
     var paidByGym = row.insertCell(15);
@@ -50,6 +50,7 @@ function addRow(coverClass){
     reason.innerHTML=coverClass.reason;
     notes.innerHTML=coverClass.notes;
     instructorAssigned.innerHTML=coverClass.instructorAssigned;
+    amountDueToInstructor.innerHTML=coverClass.classRate * 0.8;
     instructorPaid.innerHTML=coverClass.instructorPaid;
     gymInvoiced.innerHTML=coverClass.gymInvoiced;
     paidByGym.innerHTML=coverClass.paidByGym;
