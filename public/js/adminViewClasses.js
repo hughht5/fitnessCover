@@ -63,7 +63,7 @@ function addRow(coverClass){
 }
 
 function instructorPaidSwitch(paid){
-    alert("test");
+    alert(paid);
 }
 
 
