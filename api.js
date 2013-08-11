@@ -88,7 +88,7 @@ exports.updateClassIntructorPaidSwitch = function(req, res) {
     console.log('Updating class - instructor paid: ' + id);
 
     classdb.collection('classes', function(err, collection) {
-        collection.update({'_id':new BSON.ObjectID(id)}, {$set: {confirmed: true}}, {w:1}, function(err, result) {
+        collection.update({'_id':new BSON.ObjectID(id)}, {$set: {instructorPaid: true}}, {w:1}, function(err, result) {
             res.send(result);
         });
     });
