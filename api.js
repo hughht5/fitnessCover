@@ -90,7 +90,12 @@ exports.updateClassIntructorPaidSwitch = function(req, res) {
     //check if instructor paid is true or false
     classdb.collection('classes', function(err, collection) {
         collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
-            var paid = item.instructorPaid;
+            var paid;
+            if(item.instructorPaid){
+                paid=false;
+            }else{
+                paid=true;
+            }
 
             classdb.collection('classes', function(err, collection) {
                 collection.update({'_id':new BSON.ObjectID(id)}, {$set: {instructorPaid: paid}}, {w:1}, function(err, result) {
