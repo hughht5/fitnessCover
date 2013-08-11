@@ -141,7 +141,7 @@ exports.updateClassesPaidByGymSwitch = function(req, res) {
     classdb.collection('classes', function(err, collection) {
         collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
             var paid;
-            if(item.gymInvoiced){
+            if(item.paidByGym){
                 paid=false;
             }else{
                 paid=true;
