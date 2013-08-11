@@ -73,7 +73,7 @@ function instructorPaidSwitch(id){
     });
 
     //now reload the table
-    //reloadTable();
+    reloadTable();
 }
 
 
