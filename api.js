@@ -87,9 +87,17 @@ exports.updateClassIntructorPaidSwitch = function(req, res) {
     var coverClass = req.body;
     console.log('Updating class - instructor paid: ' + id);
 
+    //check if instructor paid is true or false
     classdb.collection('classes', function(err, collection) {
-        collection.update({'_id':new BSON.ObjectID(id)}, {$set: {instructorPaid: true}}, {w:1}, function(err, result) {
-            res.send(result);
+        collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
+            var paid = item.instructorPaid;
+
+            classdb.collection('classes', function(err, collection) {
+                collection.update({'_id':new BSON.ObjectID(id)}, {$set: {instructorPaid: paid}}, {w:1}, function(err, result) {
+                    res.send(result);
+                });
+            });
+
         });
     });
 }
