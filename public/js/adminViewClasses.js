@@ -50,7 +50,7 @@ function addRow(coverClass){
     reason.innerHTML=coverClass.reason;
     notes.innerHTML=coverClass.notes;
     instructorAssigned.innerHTML=coverClass.instructorAssigned;
-    amountDueToInstructor.innerHTML=coverClass.classRate * 0.8;
+    amountDueToInstructor.innerHTML=(coverClass.classRate * 0.8).toFixed(2);
     instructorPaid.innerHTML=coverClass.instructorPaid;
     gymInvoiced.innerHTML=coverClass.gymInvoiced;
     paidByGym.innerHTML=coverClass.paidByGym;
