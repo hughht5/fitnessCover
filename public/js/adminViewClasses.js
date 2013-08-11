@@ -62,6 +62,22 @@ function addRow(coverClass){
 
 }
 
+function gymInvoicedSwitch(id){
+
+     $.ajax({
+        url: "/api/classesGymInvoicedSwitch/"+id,
+        type: 'PUT',
+        success: function(data) {
+            console.log(data);
+        }
+    });
+
+    //now reload the table
+    reloadTable();
+}
+
+
+
 function instructorPaidSwitch(id){
 
      $.ajax({
@@ -75,7 +91,6 @@ function instructorPaidSwitch(id){
     //now reload the table
     reloadTable();
 }
-
 
 function removeClass(id){
 
