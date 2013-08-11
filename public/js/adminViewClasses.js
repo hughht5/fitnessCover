@@ -62,8 +62,8 @@ function addRow(coverClass){
 
 }
 
-function instructorPaidSwitch(class){
-    console.log(class);
+function instructorPaidSwitch(coverClass){
+    console.log(coverClass);
     /*var update;
     if(paid){
         update=false;
