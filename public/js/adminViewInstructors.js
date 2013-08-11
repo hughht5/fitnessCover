@@ -64,6 +64,8 @@ function addRow(instructor){
 
 function removeInstructor(id){
 
+    
+
     $.ajax({
         url: "/api/instructors/"+id,
         type: 'DELETE',

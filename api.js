@@ -132,6 +132,31 @@ exports.updateClassGymInvoicedSwitch = function(req, res) {
     });
 }
 
+exports.updateClassesPaidByGymSwitch = function(req, res) {
+    var id = req.params.id;
+    var coverClass = req.body;
+    console.log('Updating class - paid by gym: ' + id);
+
+    //check if paid by gym is true or false
+    classdb.collection('classes', function(err, collection) {
+        collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
+            var paid;
+            if(item.gymInvoiced){
+                paid=false;
+            }else{
+                paid=true;
+            }
+
+            classdb.collection('classes', function(err, collection) {
+                collection.update({'_id':new BSON.ObjectID(id)}, {$set: {paidByGym: paid}}, {w:1}, function(err, result) {
+                    res.send(result);
+                });
+            });
+
+        });
+    });
+}
+
 exports.deleteClass = function(req, res) {
     var id = req.params.id;
     console.log('Deleting class: ' + id);

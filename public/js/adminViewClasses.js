@@ -56,11 +56,27 @@ function addRow(coverClass){
     
     gymInvoiced.innerHTML=coverClass.gymInvoiced + '<br/><button onclick="gymInvoicedSwitch(\''+coverClass._id+'\')">Switch</button>';
     
-    paidByGym.innerHTML=coverClass.paidByGym;
+    paidByGym.innerHTML=coverClass.paidByGym + '<br/><button onclick="paidByGymSwitch(\''+coverClass._id+'\')">Switch</button>';
 
     remove.innerHTML = '<button onclick="removeClass(\''+coverClass._id+'\')">Remove</button>';
 
 }
+
+
+function paidByGymSwitch(id){
+
+     $.ajax({
+        url: "/api/classesPaidByGymSwitch/"+id,
+        type: 'PUT',
+        success: function(data) {
+            console.log(data);
+        }
+    });
+
+    //now reload the table
+    reloadTable();
+}
+
 
 function gymInvoicedSwitch(id){
 
@@ -75,8 +91,6 @@ function gymInvoicedSwitch(id){
     //now reload the table
     reloadTable();
 }
-
-
 
 function instructorPaidSwitch(id){
 
