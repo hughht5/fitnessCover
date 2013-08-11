@@ -52,7 +52,7 @@ function addRow(coverClass){
     instructorAssigned.innerHTML=coverClass.instructorAssigned;
     amountDueToInstructor.innerHTML=(coverClass.classRate * 0.8).toFixed(2);
 
-    instructorPaid.innerHTML=coverClass.instructorPaid + '<br/><button onclick="instructorPaidSwitch(\''+coverClass.instructorPaid+'\')">Switch</button>';
+    instructorPaid.innerHTML=coverClass.instructorPaid + '<br/><button onclick="instructorPaidSwitch('+coverClass+')">Switch</button>';
     
     gymInvoiced.innerHTML=coverClass.gymInvoiced;
     
@@ -62,8 +62,9 @@ function addRow(coverClass){
 
 }
 
-function instructorPaidSwitch(paid){
-    var update;
+function instructorPaidSwitch(class){
+    console.log(class);
+    /*var update;
     if(paid){
         update=false;
     }else{
@@ -79,7 +80,7 @@ function instructorPaidSwitch(paid){
         success: function(data) {
             console.log(data);
         }
-    });
+    });//*/
 }
 
 
