@@ -52,7 +52,7 @@ function addRow(coverClass){
     instructorAssigned.innerHTML=coverClass.instructorAssigned;
     amountDueToInstructor.innerHTML=(coverClass.classRate * 0.8).toFixed(2);
 
-    instructorPaid.innerHTML=coverClass.instructorPaid + '<br/><button onclick="instructorPaidSwitch(\''+coverClass.instructorPaid+'\')">Switch</button>';
+    instructorPaid.innerHTML=coverClass.instructorPaid + '<br/><button onclick="instructorPaidSwitch('+coverClass.instructorPaid+')">Switch</button>';
     
     gymInvoiced.innerHTML=coverClass.gymInvoiced;
     
@@ -63,7 +63,23 @@ function addRow(coverClass){
 }
 
 function instructorPaidSwitch(paid){
-    alert(paid);
+    var update;
+    if(paid){
+        update=false;
+    }else{
+        update=true;
+    }
+
+     $.ajax({
+        url: "/api/classes/"+id,
+        type: 'PUT',
+        data: {
+            paid:update
+        },
+        success: function(data) {
+            console.log(data);
+        }
+    });
 }
 
 
