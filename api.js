@@ -81,7 +81,19 @@ exports.updateClass = function(req, res) {
         });
     });
 }
- 
+
+exports.updateClassIntructorPaidSwitch = function(req, res) {
+    var id = req.params.id;
+    var coverClass = req.body;
+    console.log('Updating class - instructor paid: ' + id);
+
+    classdb.collection('classes', function(err, collection) {
+        collection.update({'_id':new BSON.ObjectID(id)}, {$set: {confirmed: true}}, {w:1}, function(err, result) {
+            res.send(result);
+        });
+    });
+}
+
 exports.deleteClass = function(req, res) {
     var id = req.params.id;
     console.log('Deleting class: ' + id);

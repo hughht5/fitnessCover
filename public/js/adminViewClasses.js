@@ -63,24 +63,14 @@ function addRow(coverClass){
 }
 
 function instructorPaidSwitch(id){
-    console.log(id);
-    /*var update;
-    if(paid){
-        update=false;
-    }else{
-        update=true;
-    }
 
      $.ajax({
-        url: "/api/classes/"+id,
+        url: "/api/classesIntructorPaidSwitch/"+id,
         type: 'PUT',
-        data: {
-            paid:update
-        },
         success: function(data) {
             console.log(data);
         }
-    });//*/
+    });
 }
 
 
