@@ -40,6 +40,7 @@ app.get('/api/classes/:id',api.findClassById);
 app.post('/api/classes',api.addClass);
 app.put('/api/classes/:id',api.updateClass);
 app.put('/api/classesIntructorPaidSwitch/:id',api.updateClassIntructorPaidSwitch);
+app.put('/api/classesGymInvoicedSwitch/:id',api.updateClassGymInvoicedSwitch);
 app.delete('/api/classes/:id',api.deleteClass); //security
 
 //instructors

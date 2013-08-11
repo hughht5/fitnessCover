@@ -54,7 +54,7 @@ function addRow(coverClass){
 
     instructorPaid.innerHTML=coverClass.instructorPaid + '<br/><button onclick="instructorPaidSwitch(\''+coverClass._id+'\')">Switch</button>';
     
-    gymInvoiced.innerHTML=coverClass.gymInvoiced;
+    gymInvoiced.innerHTML=coverClass.gymInvoiced + '<br/><button onclick="gymInvoicedSwitch(\''+coverClass._id+'\')">Switch</button>';
     
     paidByGym.innerHTML=coverClass.paidByGym;
 
