@@ -52,7 +52,7 @@ function addRow(coverClass){
     instructorAssigned.innerHTML=coverClass.instructorAssigned;
     amountDueToInstructor.innerHTML=(coverClass.classRate * 0.8).toFixed(2);
 
-    instructorPaid.innerHTML=coverClass.instructorPaid + '<br/><button onclick="">markPaid</button>';
+    instructorPaid.innerHTML=coverClass.instructorPaid + '<br/><button onclick="instructorPaidSwitch(\''+coverClass.instructorPaid+'\')">Switch</button>';
     
     gymInvoiced.innerHTML=coverClass.gymInvoiced;
     
@@ -60,6 +60,10 @@ function addRow(coverClass){
 
     remove.innerHTML = '<button onclick="removeClass(\''+coverClass._id+'\')">Remove</button>';
 
+}
+
+function instructorPaidSwitch(paid){
+    alert("test");
 }
 
 
