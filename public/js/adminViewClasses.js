@@ -58,7 +58,7 @@ function addRow(coverClass){
     
     paidByGym.innerHTML=coverClass.paidByGym;
 
-    remove.innerHTML = '<button onclick="removeClass(\''+coverClass._id+'\')">Remove</button>';
+    remove.innerHTML = '<button onclick="removeClass('coverClass._id')">Remove</button>';
 
 }
 
