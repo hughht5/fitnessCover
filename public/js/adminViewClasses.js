@@ -50,7 +50,7 @@ function addRow(coverClass){
     reason.innerHTML=coverClass.reason;
     notes.innerHTML=coverClass.notes;
 
-    instructorAssigned.innerHTML='<input class="typeahead tt-query" type="text" placeholder="best picture winners" autocomplete="off" spellcheck="false" dir="auto">';
+    instructorAssigned.innerHTML='<input class="typeahead tt-query" type="text" placeholder="none" autocomplete="off" spellcheck="false" dir="auto">';
     
     amountDueToInstructor.innerHTML=(coverClass.classRate * 0.8).toFixed(2);
 
