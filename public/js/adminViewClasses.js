@@ -31,10 +31,11 @@ function addRow(coverClass){
     var reason = row.insertCell(9);
     var notes = row.insertCell(10);
     var instructorAssigned = row.insertCell(11);
-    var instructorPaid = row.insertCell(12);
-    var gymInvoiced = row.insertCell(13);
-    var paidByGym = row.insertCell(14);
-    var remove = row.insertCell(15);
+    var instructorAssigned = row.insertCell(12);
+    var instructorPaid = row.insertCell(13);
+    var gymInvoiced = row.insertCell(14);
+    var paidByGym = row.insertCell(15);
+    var remove = row.insertCell(16);
 
 
     firstName.innerHTML=coverClass.firstName;
