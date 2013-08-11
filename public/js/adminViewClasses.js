@@ -71,6 +71,9 @@ function instructorPaidSwitch(id){
             console.log(data);
         }
     });
+
+    //now reload the table
+    reloadTable();
 }
 
 
@@ -86,10 +89,13 @@ function removeClass(id){
 
 
     //now reload the table
+    reloadTable();
+}
+
+function reloadTable(){
     //remove all rows except title
     $("#classes>thead>tr:not(:first)").remove();
 
     //reload
     getClasses();
 }
-
