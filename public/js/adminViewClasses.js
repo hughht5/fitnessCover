@@ -70,11 +70,10 @@ function paidByGymSwitch(id){
         type: 'PUT',
         success: function(data) {
             console.log(data);
+            //now reload the table
+            reloadTable();
         }
-    });
-
-    //now reload the table
-    reloadTable();
+    });   
 }
 
 
@@ -85,11 +84,10 @@ function gymInvoicedSwitch(id){
         type: 'PUT',
         success: function(data) {
             console.log(data);
+            //now reload the table
+            reloadTable();
         }
     });
-
-    //now reload the table
-    reloadTable();
 }
 
 function instructorPaidSwitch(id){
@@ -99,11 +97,10 @@ function instructorPaidSwitch(id){
         type: 'PUT',
         success: function(data) {
             console.log(data);
+            //now reload the table
+            reloadTable();
         }
     });
-
-    //now reload the table
-    reloadTable();
 }
 
 function removeClass(id){
