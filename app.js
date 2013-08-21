@@ -46,7 +46,6 @@ app.delete('/api/classes/:id',api.deleteClass); //security
 
 //instructors
 app.get('/api/instructors',api.findAllInstructors);
-app.get('/api/instructorsContains',api.findAllInstructorsContainsName);
 app.get('/api/instructorsNew',api.findNewInstructors);
 app.get('/api/instructorsApproved',api.findApprovedInstructors);
 app.get('/api/instructors/:id',api.findInstructorById);

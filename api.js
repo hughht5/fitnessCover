@@ -211,21 +211,6 @@ exports.findAllInstructors = function(req, res) {
     });
 };
 
-exports.findAllInstructorsContainsName = function(req, res) {    
-    var name = url.parse(req.url, true).query.name;
-    console.log(name);
-    var email = {
-        email: /hugh/
-    }
-    console.log(email);
-
-    instructordb.collection('instructors', function(err, collection) {
-        collection.find(email).toArray(function(err, items) {
-            res.send(items);
-        });
-    });
-};
-
 exports.findNewInstructors = function(req, res) {
     var confirmed = {
         'confirmed': {
