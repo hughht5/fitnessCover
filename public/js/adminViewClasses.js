@@ -51,9 +51,13 @@ function addRow(coverClass){
     notes.innerHTML=coverClass.notes;
 
     if (coverClass.instructorAssigned==false){
-        instructorAssigned.innerHTML='<input class="typeahead tt-query" type="text" placeholder="none" autocomplete="off" spellcheck="false" dir="auto">';   
+        instructorAssigned.innerHTML='<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+  <li><a tabindex="-1" href="#">Action</a></li>
+  <li><a tabindex="-1" href="#">Another action</a></li>
+  <li><a tabindex="-1" href="#">Something else here</a></li>
+  </ul>';   
     }else{
-        instructorAssigned.innerHTML=coverClass.instructorAssigned;
+        instructorAssigned.innerHTML=coverClass.instructorAssigned;§
     }
     
     amountDueToInstructor.innerHTML=(coverClass.classRate * 0.8).toFixed(2);
