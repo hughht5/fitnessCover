@@ -216,7 +216,7 @@ exports.findAllInstructorsContainsName = function(req, res) {
     console.log(name);
 
     instructordb.collection('instructors', function(err, collection) {
-        collection.find({'email': /name/}).toArray(function(err, items) {
+        collection.find({'email': '/'+name+'/'}).toArray(function(err, items) {
             res.send(items);
         });
     });
