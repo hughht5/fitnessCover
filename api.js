@@ -203,6 +203,7 @@ exports.findInstructorById = function(req, res) {
  
 exports.findAllInstructors = function(req, res) {
     instructordb.collection('instructors', function(err, collection) {
+  var url = require('url');
         
 var url_parts = url.parse(req.url, true);
 console.log(url_parts);
