@@ -214,9 +214,12 @@ exports.findAllInstructors = function(req, res) {
 exports.findAllInstructorsContainsName = function(req, res) {    
     var name = url.parse(req.url, true).query.name;
     console.log(name);
+    var email = {
+        "/"+name+"/"
+    }
 
     instructordb.collection('instructors', function(err, collection) {
-        collection.find({'email': '/'+name+'/'}).toArray(function(err, items) {
+        collection.find(email).toArray(function(err, items) {
             res.send(items);
         });
     });
