@@ -1,4 +1,5 @@
 var mongo = require('mongodb');
+var MongoClient = mongo.MongoClient;
 var url = require('url');
  
 var Server = mongo.Server,
@@ -7,7 +8,20 @@ var Server = mongo.Server,
 
  
 var server = new Server('localhost', 27017, {auto_reconnect: true});
+/*
+var uri = 'mongodb://hughht5:Default11@ds041758.mongolab.com:41758/fitnesscovertest';
+mongo.MongoClient.connect(uri, function (err, classdb) {
 
+
+
+});
+
+  
+
+var server = new Server('ds041758.mongolab.com', 41758, {auto_reconnect: true});
+
+var mongoclient = new MongoClient(new Server("ds041758.mongolab.com", 27017, {native_parser: true}));
+//*/
 
 //classes database
 
