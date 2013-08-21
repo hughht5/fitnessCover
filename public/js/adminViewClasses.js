@@ -51,7 +51,7 @@ function addRow(coverClass){
     notes.innerHTML=coverClass.notes;
 
     if (coverClass.instructorAssigned==false){
-        instructorAssigned.innerHTML='<div class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">select here</a><ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">...</ul></div>';
+        instructorAssigned.innerHTML='<div class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Select instructor</a><ul class="dropdown-menu" role="menu" aria-labelledby="dLabel"><li><a tabindex="-1" href="#">Action</a></li><li><a tabindex="-1" href="#">Another action</a></li><li><a tabindex="-1" href="#">Something else here</a></li></ul></div>';
     }else{
         instructorAssigned.innerHTML=coverClass.instructorAssigned;
     }
