@@ -1,4 +1,5 @@
 var mongo = require('mongodb');
+var url = require('url');
  
 var Server = mongo.Server,
     Db = mongo.Db,
@@ -201,14 +202,9 @@ exports.findInstructorById = function(req, res) {
     });
 };
  
-exports.findAllInstructors = function(req, res) {
+exports.findAllInstructors = function(req, res) {    
+    var query = url.parse(req.url, true).query;
     instructordb.collection('instructors', function(err, collection) {
-  var url = require('url');
-        
-var url_parts = url.parse(req.url, true);
-var query = url_parts.query;
-console.log(query);
-
         collection.find(query).toArray(function(err, items) {
             res.send(items);
         });
