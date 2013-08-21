@@ -215,8 +215,9 @@ exports.findAllInstructorsContainsName = function(req, res) {
     var name = url.parse(req.url, true).query.name;
     console.log(name);
     var email = {
-        "/"+name+"/"
+        email: "/"+name+"/"
     }
+    console.log(email);
 
     instructordb.collection('instructors', function(err, collection) {
         collection.find(email).toArray(function(err, items) {
