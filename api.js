@@ -204,7 +204,7 @@ exports.findInstructorById = function(req, res) {
 exports.findAllInstructors = function(req, res) {
     instructordb.collection('instructors', function(err, collection) {
         
-var url_parts = url.parse(request.url, true);
+var url_parts = url.parse(req.url, true);
 console.log(url_parts);
 
         collection.find().toArray(function(err, items) {
