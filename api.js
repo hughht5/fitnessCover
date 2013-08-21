@@ -212,7 +212,7 @@ exports.findAllInstructors = function(req, res) {
 };
 
 exports.findAllInstructorsContains = function(req, res) {    
-    var requestParams = url.parse(req.url, true);
+    var requestParams = url.parse(req.url, true).query.name;
     console.log(requestParams);
     instructordb.collection('instructors', function(err, collection) {
         collection.find(query).toArray(function(err, items) {
