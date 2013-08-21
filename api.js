@@ -204,7 +204,16 @@ exports.findInstructorById = function(req, res) {
  
 exports.findAllInstructors = function(req, res) {    
     var query = url.parse(req.url, true).query;
-    console.log(query);
+    instructordb.collection('instructors', function(err, collection) {
+        collection.find(query).toArray(function(err, items) {
+            res.send(items);
+        });
+    });
+};
+
+exports.findAllInstructorsContains = function(req, res) {    
+    var requestParams = url.parse(req.url, true);
+    console.log(requestParams);
     instructordb.collection('instructors', function(err, collection) {
         collection.find(query).toArray(function(err, items) {
             res.send(items);
