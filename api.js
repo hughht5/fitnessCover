@@ -7,37 +7,25 @@ var Server = mongo.Server,
     BSON = mongo.BSONPure;
 
  
-var server = new Server('localhost', 27017, {auto_reconnect: true});
-/*
-var uri = 'mongodb://hughht5:Default11@ds041758.mongolab.com:41758/fitnesscovertest';
-mongo.MongoClient.connect(uri, function (err, classdb) {
+//var server = new Server('localhost', 27017, {auto_reconnect: true});
 
-
-
-});
-
-  
-
-var server = new Server('ds041758.mongolab.com', 41758, {auto_reconnect: true});
-
-var mongoclient = new MongoClient(new Server("ds041758.mongolab.com", 27017, {native_parser: true}));
-//*/
+var server = new Server('ds041168.mongolab.com', 41168, {auto_reconnect: true});
 
 //classes database
 
 classdb = new Db('classes', server);
  
-classdb.open(function(err, classdb) {
-//    classdb.authenticate('fitnessCover', 'iamLHta7BAhD', function(err, success) {
-        if(!err) {
+classdb.open(function(err, db) {
+    if(!err) {
+        db.authenticate('hughht5', 'Default11', function(err, success) {
             console.log("Connected to 'classes' database");
-            classdb.collection('classes', {strict:true}, function(err, collection) {
+            db.collection('classes', {strict:true}, function(err, collection) {
                 if (err) {
                     console.log("The 'classes' collection is empty!");
                 }
             });
-        }
-//    });
+        });
+    }
 });
 
 exports.findClassById = function(req, res) {
@@ -190,17 +178,21 @@ exports.deleteClass = function(req, res) {
 
 
 //Instructors database
-var server2 = new Server('localhost', 27017, {auto_reconnect: true});
+//var server2 = new Server('localhost', 27017, {auto_reconnect: true});
+
+var server2 = new Server('ds041218.mongolab.com', 41218, {auto_reconnect: true});
 
 instructordb = new Db('instructors', server2);
 
-instructordb.open(function(err, instructordb) {
+instructordb.open(function(err, db) {
     if(!err) {
-        console.log("Connected to 'instructors' database");
-        instructordb.collection('instructors', {strict:true}, function(err, collection) {
-            if (err) {
-                console.log("The 'instructors' collection is empty!");
-            }
+        db.authenticate('hughht5', 'Default11', function(err, success) {
+            console.log("Connected to 'instructors' database");
+            db.collection('instructors', {strict:true}, function(err, collection) {
+                if (err) {
+                    console.log("The 'instructors' collection is empty!");
+                }
+            });
         });
     }
 });
@@ -313,10 +305,5 @@ exports.deleteInstructor = function(req, res) {
         });
     });
 }
-
-
-
-
-
 
 
