@@ -211,11 +211,12 @@ exports.findAllInstructors = function(req, res) {
     });
 };
 
-exports.findAllInstructorsContains = function(req, res) {    
-    var requestParams = url.parse(req.url, true).query.name;
-    console.log(requestParams);
+exports.findAllInstructorsContainsName = function(req, res) {    
+    var name = url.parse(req.url, true).query.name;
+    console.log(name);
+
     instructordb.collection('instructors', function(err, collection) {
-        collection.find(query).toArray(function(err, items) {
+        collection.find({'email': /name/}).toArray(function(err, items) {
             res.send(items);
         });
     });
