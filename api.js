@@ -209,7 +209,7 @@ var url_parts = url.parse(req.url, true);
 var query = url_parts.query;
 console.log(query);
 
-        collection.find().toArray(function(err, items) {
+        collection.find(query).toArray(function(err, items) {
             res.send(items);
         });
     });
