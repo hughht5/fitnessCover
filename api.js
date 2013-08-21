@@ -215,7 +215,7 @@ exports.findAllInstructorsContainsName = function(req, res) {
     var name = url.parse(req.url, true).query.name;
     console.log(name);
     var email = {
-        email: /name/
+        email: /hugh/
     }
     console.log(email);
 
