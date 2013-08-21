@@ -206,7 +206,8 @@ exports.findAllInstructors = function(req, res) {
   var url = require('url');
         
 var url_parts = url.parse(req.url, true);
-console.log(url_parts);
+var query = url_parts.query;
+console.log(query);
 
         collection.find().toArray(function(err, items) {
             res.send(items);
