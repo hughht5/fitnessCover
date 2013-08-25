@@ -1,7 +1,12 @@
+var instructorsArray = new Array();
+
 $(document).ready(function () {
-
-    getClasses();
-
+    $.get("/api/instructors", function(data){
+        for (var x=0;x<data.length;x++){
+            instructorsArray.push(data[x]);
+        }
+        getClasses();
+    });
 });
 
 
@@ -51,9 +56,22 @@ function addRow(coverClass){
     notes.innerHTML=coverClass.notes;
 
     if (coverClass.instructorAssigned==false){
-        instructorAssigned.innerHTML='<div class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Select instructor</a><ul class="dropdown-menu" role="menu" aria-labelledby="dLabel"><li><a tabindex="-1" href="#">Action</a></li><li><a tabindex="-1" href="#">Another action</a></li><li><a tabindex="-1" href="#">Something else here</a></li></ul></div>';
+        //generate list of instructors
+        //var instructorList = '<li><a tabindex="-1" href="#">Action</a></li>';
+        //instructorList += '<li><a tabindex="-1" href="#">Another</a></li>';
+        //instructorList += '<li><a tabindex="-1" href="#">Something else </a></li>';
+
+        //onclick="assignIntructor('+instructorsArray[i]._id+'); return false;"
+        var instructorList = '';
+        for (var i = 0; i < instructorsArray.length; i++) {
+            instructorList += '<li><a tabindex="-1" href="#" onClick="assignInstructor(\''+i+'\',\''+coverClass._id+'\');">' + instructorsArray[i].firstName + ' ' + instructorsArray[i].lastName + '</a></li>'
+        };
+
+
+        instructorAssigned.innerHTML='<div class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Select instructor</a><ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">'+instructorList+'</ul></div>';
     }else{
         instructorAssigned.innerHTML=coverClass.instructorAssigned;
+        //TODO add delete button to reselect new instructor
     }
     
     amountDueToInstructor.innerHTML=(coverClass.classRate * 0.8).toFixed(2);
@@ -65,6 +83,13 @@ function addRow(coverClass){
     paidByGym.innerHTML=coverClass.paidByGym + '<br/><button onclick="paidByGymSwitch(\''+coverClass._id+'\')">Switch</button>';
 
     remove.innerHTML = '<button onclick="removeClass(\''+coverClass._id+'\')">Remove</button>';
+
+}
+
+function assignInstructor(instructorID, classID){
+    console.log(instructorsArray[instructorID]);
+    console.log(classID);
+
 
 }
 

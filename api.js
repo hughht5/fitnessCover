@@ -73,7 +73,7 @@ exports.updateClass = function(req, res) {
     console.log('Updating class: ' + id);
     console.log(JSON.stringify(coverClass));
     classdb.collection('classes', function(err, collection) {
-        collection.update({'_id':new BSON.ObjectID(id)}, coverClass, {safe:true}, function(err, result) {
+        collection.update({'_id':new BSON.ObjectID(id)}, {$set:coverClass}, {safe:true}, function(err, result) {
             if (err) {
                 console.log('Error updating class: ' + err);
                 res.send({'error':'An error has occurred'});
