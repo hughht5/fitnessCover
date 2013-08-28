@@ -219,9 +219,7 @@ exports.findAllInstructors = function(req, res) {
 
 exports.findNewInstructors = function(req, res) {
     var confirmed = {
-        'confirmed': {
-            "$exists":false
-        }
+        'confirmed':"false"    
     };
 
     instructordb.collection('instructors', function(err, collection) {
@@ -233,7 +231,7 @@ exports.findNewInstructors = function(req, res) {
 
 exports.findApprovedInstructors = function(req, res) {
     var approved = {
-        'confirmed': true
+        'confirmed': "true"
     };
 
     instructordb.collection('instructors', function(err, collection) {
@@ -252,7 +250,7 @@ exports.approveInstructor = function(req, res) {
     console.log(id);
 
     instructordb.collection('instructors', function(err, collection) {
-        collection.update({'_id':new BSON.ObjectID(id)}, {$set: {confirmed: true}}, {w:1}, function(err, result) {
+        collection.update({'_id':new BSON.ObjectID(id)}, {$set: {confirmed: "true"}}, {w:1}, function(err, result) {
             res.send(result);
         });
     });
@@ -260,6 +258,8 @@ exports.approveInstructor = function(req, res) {
  
 exports.addInstructor = function(req, res) {
     var instructor = req.body;
+    //make instructor uncorfirmed:
+    instructor.confirmed="false";
     console.log('Adding instructor: ' + JSON.stringify(instructor));
     instructordb.collection('instructors', function(err, collection) {
         collection.insert(instructor, {safe:true}, function(err, result) {
@@ -276,10 +276,12 @@ exports.addInstructor = function(req, res) {
 exports.updateInstructor = function(req, res) {
     var id = req.params.id;
     var instructor = req.body;
+
     console.log('Updating instructor: ' + id);
     console.log(JSON.stringify(instructor));
     instructordb.collection('instructors', function(err, collection) {
-        collection.update({'_id':new BSON.ObjectID(id)}, instructor, {safe:true}, function(err, result) {
+        collection.update({'_id':new BSON.ObjectID(id)}, {$set:instructor}, {safe:true}, function(err, result) {
+
             if (err) {
                 console.log('Error updating instructor: ' + err);
                 res.send({'error':'An error has occurred'});

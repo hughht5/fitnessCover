@@ -44,7 +44,8 @@ function addRow(instructor){
     var sort=row.insertCell(5);
     var qualifications=row.insertCell(6);
     var locations=row.insertCell(7);
-    var remove = row.insertCell(8);
+    var disapprove = row.insertCell(8);
+    var remove = row.insertCell(9);
 
 
     firstName.innerHTML=instructor.firstName;
@@ -56,15 +57,40 @@ function addRow(instructor){
     qualifications.innerHTML=qualificationsHTML;
     locations.innerHTML=locationsHTML;
 
-    var buttonHTML='<button onclick="removeInstructor(\''+instructor._id+'\')">Remove</button>';
-    remove.innerHTML = buttonHTML;
+    var disapprovebuttonHTML='<button onclick="disapproveInstructor(\''+instructor._id+'\')">Disapprove</button>';
+    disapprove.innerHTML = disapprovebuttonHTML;
+
+    var removebuttonHTML='<button onclick="removeInstructor(\''+instructor._id+'\')">Remove</button>';
+    remove.innerHTML = removebuttonHTML;
 
 }
 
 
+function disapproveInstructor(id){
+
+
+
+    $.ajax({
+        url: "/api/instructors/"+id,
+        type: 'PUT',
+        data: {confirmed: false},
+        success: function(data) {
+            console.log(data);
+        }
+    });
+
+
+    //now reload the table
+    //remove all rows except title
+    $("#instructors>thead>tr:not(:first)").remove();
+
+    //reload
+    getInstructors();
+}
+
 function removeInstructor(id){
 
-    
+
 
     $.ajax({
         url: "/api/instructors/"+id,

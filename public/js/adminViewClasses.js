@@ -1,7 +1,7 @@
 var instructorsArray = new Array();
 
 $(document).ready(function () {
-    $.get("/api/instructors", function(data){
+    $.get("/api/instructorsApproved", function(data){
         for (var x=0;x<data.length;x++){
             instructorsArray.push(data[x]);
         }
@@ -109,6 +109,8 @@ function assignInstructor(instructorID, classID){
         data: {"instructorAssigned":instructorID},
         success: function(data) {
             console.log(data);
+            reloadTable();
+
         }
     });
 
