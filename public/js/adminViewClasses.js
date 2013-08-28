@@ -55,7 +55,7 @@ function addRow(coverClass){
     reason.innerHTML=coverClass.reason;
     notes.innerHTML=coverClass.notes;
 
-    if (coverClass.instructorAssigned==false){
+    if (coverClass.instructorAssigned==false||coverClass.instructorAssigned=='false'){
         //generate list of instructors
         //var instructorList = '<li><a tabindex="-1" href="#">Action</a></li>';
         //instructorList += '<li><a tabindex="-1" href="#">Another</a></li>';
@@ -64,17 +64,23 @@ function addRow(coverClass){
         //onclick="assignIntructor('+instructorsArray[i]._id+'); return false;"
         var instructorList = '';
         for (var i = 0; i < instructorsArray.length; i++) {
-            instructorList += '<li><a tabindex="-1" href="#" onClick="assignInstructor(\''+i+'\',\''+coverClass._id+'\');">' + instructorsArray[i].firstName + ' ' + instructorsArray[i].lastName + '</a></li>'
+            instructorList += '<li><a tabindex="-1" href="#" onClick="assignInstructor(\''+instructorsArray[i]._id+'\',\''+coverClass._id+'\');">' + instructorsArray[i].firstName + ' ' + instructorsArray[i].lastName + '</a></li>'
         };
 
 
         instructorAssigned.innerHTML='<div class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Select instructor</a><ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">'+instructorList+'</ul></div>';
     }else{
-        instructorAssigned.innerHTML=coverClass.instructorAssigned;
+        //instructorAssigned.innerHTML=coverClass.instructorAssigned;
         //TODO add delete button to reselect new instructor
+        var assignedInstructor = findById(instructorsArray,coverClass.instructorAssigned);
+        instructorAssigned.innerHTML=assignedInstructor.firstName+' '+assignedInstructor.lastName;
+
+        var removeAssignedIntructorButton = '<button onClick="assignInstructor(false,\''+coverClass._id+'\')">Remove</button>';
+        instructorAssigned.innerHTML += '<br/>'+removeAssignedIntructorButton;
+
     }
     
-    amountDueToInstructor.innerHTML=(coverClass.classRate * 0.8).toFixed(2);
+    amountDueToInstructor.innerHTML='£'+(coverClass.classRate.replace('£','') * 0.8).toFixed(2);
 
     instructorPaid.innerHTML=coverClass.instructorPaid + '<br/><button onclick="instructorPaidSwitch(\''+coverClass._id+'\')">Switch</button>';
     
@@ -86,17 +92,32 @@ function addRow(coverClass){
 
 }
 
-function assignInstructor(instructorID, classID){
-    console.log(instructorsArray[instructorID]);
-    console.log(classID);
+function findById(source, id) {
+  for (var i = 0; i < source.length; i++) {
+    if (source[i]._id === id) {
+      return source[i];
+    }
+  }
+  //return null;
+  throw "Couldn't find object with id: " + id;
+}
 
+function assignInstructor(instructorID, classID){
+    $.ajax({
+        url: "/api/classes/"+classID,
+        type: 'PUT',
+        data: {"instructorAssigned":instructorID},
+        success: function(data) {
+            console.log(data);
+        }
+    });
 
 }
 
 
 function paidByGymSwitch(id){
 
-     $.ajax({
+    $.ajax({
         url: "/api/classesPaidByGymSwitch/"+id,
         type: 'PUT',
         success: function(data) {
