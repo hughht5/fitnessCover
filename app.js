@@ -2,7 +2,8 @@
 /**
  * Module dependencies.
  */
-
+var flash = require('connect-flash');
+var mongo = require('mongodb');
 var express = require('express')
   , api = require('./api.js')
   , routes = require('./routes')
@@ -10,7 +11,15 @@ var express = require('express')
   , http = require('http')
   , path = require('path');
 
+var Server = mongo.Server,
+    Db = mongo.Db,
+    BSON = mongo.BSONPure;
+
+var passport = require('passport')
+  , LocalStrategy = require('passport-local').Strategy;
+
 var app = express();
+
 
 app.set('views', __dirname + '/views');
 app.engine('html', require('ejs').renderFile);
@@ -26,13 +35,63 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
+/*
+var server = new Server('ds043388.mongolab.com', 43388, {auto_reconnect: true});
+var userDb = new Db('users', server);
+userDb.open(function(err, db) {
+    if(!err) {
+        db.authenticate('hughht5', 'Default11', function(err, success) {
+            console.log("Connected to 'users' database");
+            db.collection('users', {strict:true}, function(err, collection) {
+                if (err) {
+                    console.log("The 'users' collection is empty!");
+                }
+            });
+        });
+    }
+});
+
+passport.use(new LocalStrategy(
+	function(username, password, done) {
+		console.log('Logging in user: ' + username + '   ' + password);
+		userDb.collection('users', function(err, collection) {
+		    collection.findOne({ username: username }, function(err, user) {
+				if (err) { return done(err); }
+				if (!user) {
+					return done(null, false,{ message: 'Incorrect username.' });
+				}
+				if (!user.validPassword(password)) {
+					return done(null, false,{ message: 'Incorrect password.' });
+				}
+				return done(null, user);
+			});
+		});
+	}
+));
+
+*/
 
 app.get('/', routes.index);
 app.get('/users', user.list);
+
+/*
+//test
+app.get('/api/test',
+	passport.authenticate('local', { failureRedirect: '/login.html' }),
+	api.findAllClasses);
+
+//login a user
+app.post('/login',
+  passport.authenticate('local', { successRedirect: '/',
+                                   failureRedirect: '/login.html',
+                                   failureFlash: false })
+);
+*/
 
 //classes
 app.get('/api/classes',api.findAllClasses);

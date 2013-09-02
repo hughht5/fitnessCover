@@ -45,7 +45,7 @@ function addRow(instructor){
     var qualifications=row.insertCell(6);
     var locations=row.insertCell(7);
     var disapprove = row.insertCell(8);
-    var remove = row.insertCell(9);
+    //var remove = row.insertCell(9);
 
 
     firstName.innerHTML=instructor.firstName;
@@ -60,8 +60,8 @@ function addRow(instructor){
     var disapprovebuttonHTML='<button onclick="disapproveInstructor(\''+instructor._id+'\')">Disapprove</button>';
     disapprove.innerHTML = disapprovebuttonHTML;
 
-    var removebuttonHTML='<button onclick="removeInstructor(\''+instructor._id+'\')">Remove</button>';
-    remove.innerHTML = removebuttonHTML;
+    //var removebuttonHTML='<button onclick="removeInstructor(\''+instructor._id+'\')">Remove</button>';
+    //remove.innerHTML = removebuttonHTML;
 
 }
 

@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Bootbusiness | Short description about company">
     <meta name="author" content="Your name">
-    <title>Fitness Cover Admin | New Instructors</title>
+    <title>Fitness Cover | Signup for more hours</title>
     <!-- Bootstrap -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap responsive -->
-    <link href="../css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
     <!-- Font awesome - iconic font with IE7 support --> 
-    <link href="../css/font-awesome.css" rel="stylesheet">
-    <link href="../css/font-awesome-ie7.css" rel="stylesheet">
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <link href="css/font-awesome-ie7.css" rel="stylesheet">
     <!-- Bootbusiness theme -->
-    <link href="../css/boot-business.css" rel="stylesheet">
+    <link href="css/boot-business.css" rel="stylesheet">
   </head>
   <body>
     <!-- Start: HEADER -->
@@ -23,7 +23,7 @@
       <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
           <div class="container">
-            <a href="../index.html" class="brand brand-bootbus">Fitness Cover</a>
+            <a href="index.html" class="brand brand-bootbus">Fitness Cover</a>
             <!-- Below button used for responsive navigation -->
             <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
               <span class="icon-bar"></span>
@@ -33,10 +33,10 @@
             <!-- Start: Primary navigation -->
             <div class="nav-collapse collapse">        
               <ul class="nav pull-right">
-                <li><a href="../faq.html">FAQ</a></li>
-                <li><a href="../about.html">About Us</a></li>
-                <li><a href="../contact_us.html">Contact Us</a></li>
-                <li><a href="../signup.html">Sign up</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact_us.html">Contact Us</a></li>
+                <li><a href="signup.html">Sign up</a></li>
               </ul>
             </div>
           </div>
@@ -47,33 +47,26 @@
     <!-- End: HEADER -->
     <!-- Start: MAIN CONTENT -->
     <div class="content">
-      <div class="well well-large">
-        <div class="pagination-centered">
-          <a href="viewInstructors.html" class="btn btn-primary btn-large"><i class="icon-white icon-hand-right"></i>View Approved Instructors</a>
-        </div>
-      </div>
       <div class="container">
         <div class="row">
-       
-          <table id="newInstructors" class="table table-bordered table-hover">
-            <thead>
-              <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Account Number</th>
-                <th>Sort Code</th>
-                <th>Qualifications</th>
-                <th>Locations</th>
-                <th>Approve</th>
-                <th>Remove</th>
-              </tr>
-            </thead>
-            <tbody>
-               <!-- ------ Insert contents here ------------ -->
-            </tbody>
-          </table>
+          <div class="span6 offset3">
+            <h4 class="widget-header">Login</h4>
+            <div class="widget-body">
+              <form action="/login" method="post">
+              <div>
+                  <label>Username:</label>
+                  <input type="text" name="username"/>
+              </div>
+              <div>
+                  <label>Password:</label>
+                  <input type="password" name="password"/>
+              </div>
+              <div>
+                  <input type="submit" value="Log In"/>
+              </div>
+          </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -86,7 +79,7 @@
             <h4><i class="icon-beaker icon-white"></i> About</h4>
             <nav>
               <ul class="quick-links">
-                <li><a href="../about.html">About Us</a></li>
+                <li><a href="about.html">About Us</a></li>
               <ul>
             </nav>          
           </div>
@@ -94,8 +87,8 @@
             <h4><i class="icon-thumbs-up icon-white"></i> Support</h4>
             <nav>
               <ul class="quick-links">
-                <li><a href="../faq.html">FAQ</a></li>
-                <li><a href="../contact_us.html">Contact us</a></li>            
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact_us.html">Contact us</a></li>            
               </ul>
             </nav>        
           </div>
@@ -103,7 +96,7 @@
             <h4><i class="icon-thumbs-up icon-white"></i> Sign up</h4>
             <nav>
               <ul class="quick-links">
-                <li><a href="../signup.html">Sign up</a></li>            
+                <li><a href="signup.html">Sign up</a></li>            
               </ul>
             </nav>        
           </div>
@@ -117,12 +110,12 @@
       </div>
     </footer>
     <!-- End: FOOTER -->
-    <script type="text/javascript" src="../js/jquery.min.js"></script>
-    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../js/boot-business.js"></script>
-    <script type="text/javascript" src="../js/bootbox.min.js"></script>
-    <script type="text/javascript" src="../js/adminApproveInstructors.js"></script>
-    <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="../js/additional-methods.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/boot-business.js"></script>
+    <script type="text/javascript" src="js/bootbox.min.js"></script>
+    <script type="text/javascript" src="js/giveCover.js"></script>
+    <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="js/additional-methods.js"></script>
   </body>
 </html>

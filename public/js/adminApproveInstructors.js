@@ -45,6 +45,8 @@ function addRow(instructor){
     var qualifications=row.insertCell(6);
     var locations=row.insertCell(7);
     var approve = row.insertCell(8);
+    var remove = row.insertCell(9);
+
 
     firstName.innerHTML=instructor.firstName;
     lastName.innerHTML=instructor.lastName;
@@ -57,6 +59,9 @@ function addRow(instructor){
 
     var buttonHTML='<button onclick="approve(\''+instructor._id+'\')">Approve</button>';
     approve.innerHTML = buttonHTML;
+
+    var removebuttonHTML='<button onclick="removeInstructor(\''+instructor._id+'\')">Remove</button>';
+    remove.innerHTML = removebuttonHTML;
 
 }
 
@@ -82,6 +87,25 @@ function approve (id){
 
     //reload
     getNewInstructors();
+}
+
+function removeInstructor(id){
+
+    $.ajax({
+        url: "/api/instructors/"+id,
+        type: 'DELETE',
+        success: function(data) {
+            console.log(data);
+        }
+    });
+
+
+    //now reload the table
+    //remove all rows except title
+    $("#instructors>thead>tr:not(:first)").remove();
+
+    //reload
+    getInstructors();
 }
 
 

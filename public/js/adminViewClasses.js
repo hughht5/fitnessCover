@@ -134,7 +134,7 @@ function paidByGymSwitch(id){
 
 function gymInvoicedSwitch(id){
 
-     $.ajax({
+    $.ajax({
         url: "/api/classesGymInvoicedSwitch/"+id,
         type: 'PUT',
         success: function(data) {
@@ -148,7 +148,7 @@ function gymInvoicedSwitch(id){
 
 function instructorPaidSwitch(id){
 
-     $.ajax({
+    $.ajax({
         url: "/api/classesIntructorPaidSwitch/"+id,
         type: 'PUT',
         success: function(data) {
