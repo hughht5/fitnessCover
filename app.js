@@ -2,8 +2,8 @@
 /**
  * Module dependencies.
  */
-var flash = require('connect-flash');
-var mongo = require('mongodb');
+//var flash = require('connect-flash');
+//var mongo = require('mongodb');
 var express = require('express')
   , api = require('./api.js')
   , routes = require('./routes')
@@ -11,12 +11,12 @@ var express = require('express')
   , http = require('http')
   , path = require('path');
 
-var Server = mongo.Server,
-    Db = mongo.Db,
-    BSON = mongo.BSONPure;
+//var Server = mongo.Server,
+//    Db = mongo.Db,
+//    BSON = mongo.BSONPure;
 
-var passport = require('passport')
-  , LocalStrategy = require('passport-local').Strategy;
+//var passport = require('passport')
+//  , LocalStrategy = require('passport-local').Strategy;
 
 var app = express();
 
@@ -76,8 +76,6 @@ passport.use(new LocalStrategy(
 
 */
 
-app.get('/', routes.index);
-app.get('/users', user.list);
 
 /*
 //test
@@ -93,25 +91,35 @@ app.post('/login',
 );
 */
 
+//basic authentication for admin endpoints
+var auth = express.basicAuth(function(user, pass, callback) {
+ var result = (user === 'admin' && pass === 'password');
+ callback(null /* error */, result);
+});
+
+app.get('/', routes.index);
+app.get('/users', user.list);
+
+
 //classes
-app.get('/api/classes',api.findAllClasses);
-app.get('/api/classes/:id',api.findClassById);
+app.get('/api/classes',auth,api.findAllClasses);
+app.get('/api/classes/:id',auth,api.findClassById);
 app.post('/api/classes',api.addClass);
-app.put('/api/classes/:id',api.updateClass);
-app.put('/api/classesIntructorPaidSwitch/:id',api.updateClassIntructorPaidSwitch);
-app.put('/api/classesGymInvoicedSwitch/:id',api.updateClassGymInvoicedSwitch);
-app.put('/api/classesPaidByGymSwitch/:id',api.updateClassesPaidByGymSwitch);
-app.delete('/api/classes/:id',api.deleteClass); //security
+app.put('/api/classes/:id',auth,api.updateClass);
+app.put('/api/classesIntructorPaidSwitch/:id',auth,api.updateClassIntructorPaidSwitch);
+app.put('/api/classesGymInvoicedSwitch/:id',auth,api.updateClassGymInvoicedSwitch);
+app.put('/api/classesPaidByGymSwitch/:id',auth,api.updateClassesPaidByGymSwitch);
+app.delete('/api/classes/:id',auth,api.deleteClass); //security
 
 //instructors
-app.get('/api/instructors',api.findAllInstructors);
-app.get('/api/instructorsNew',api.findNewInstructors);
-app.get('/api/instructorsApproved',api.findApprovedInstructors);
-app.get('/api/instructors/:id',api.findInstructorById);
+app.get('/api/instructors',auth,api.findAllInstructors);
+app.get('/api/instructorsNew',auth,api.findNewInstructors);
+app.get('/api/instructorsApproved',auth,api.findApprovedInstructors);
+app.get('/api/instructors/:id',auth,api.findInstructorById);
 app.post('/api/instructors',api.addInstructor);
-app.put('/api/instructorsApprove/:id',api.approveInstructor);
-app.put('/api/instructors/:id',api.updateInstructor);
-app.delete('/api/instructors/:id',api.deleteInstructor); //security
+app.put('/api/instructorsApprove/:id',auth,api.approveInstructor);
+app.put('/api/instructors/:id',auth,api.updateInstructor);
+app.delete('/api/instructors/:id',auth,api.deleteInstructor); //security
 
 
 http.createServer(app).listen(app.get('port'), function(){

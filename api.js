@@ -1,6 +1,8 @@
 var mongo = require('mongodb');
 var MongoClient = mongo.MongoClient;
 var url = require('url');
+var emailer = require('./emailer.js');
+
  
 var Server = mongo.Server,
     Db = mongo.Db,
@@ -62,6 +64,18 @@ exports.addClass = function(req, res) {
             } else {
                 console.log('Success: ' + JSON.stringify(result[0]));
                 res.send(result[0]);
+
+                //send email to FitnessCover informing them of new class
+                emailer.send(['Hugh <hughht5@gmail.com>'],
+                    'FitnessCover Alerts - New class created',
+                    JSON.stringify(result[0]));
+
+                //send email to user to inform them Fitness cover will search for cover
+                var recipient = coverClass.firstName + ' ' + coverClass.lastName + '<' + coverClass.email + '>';
+                console.log(recipient);
+                emailer.send([recipient],
+                    'FitnessCover Alerts - We have received your cover request',
+                    'Thank you for using fitness cover. This email should explain the process to the user.');
             }
         });
     });
