@@ -8,15 +8,10 @@ var Server = mongo.Server,
     Db = mongo.Db,
     BSON = mongo.BSONPure;
 
- 
-//var server = new Server('localhost', 27017, {auto_reconnect: true});
-
-var server = new Server('ds041168.mongolab.com', 41168, {auto_reconnect: true});
-
 //classes database
-
+var server = new Server('ds041168.mongolab.com', 41168, {auto_reconnect: true});
 classdb = new Db('classes', server);
- 
+
 classdb.open(function(err, db) {
     if(!err) {
         db.authenticate('hughht5', 'Default11', function(err, success) {
@@ -29,6 +24,25 @@ classdb.open(function(err, db) {
         });
     }
 });
+
+
+
+//Instructors database
+var server2 = new Server('ds041218.mongolab.com', 41218, {auto_reconnect: true});
+instructordb = new Db('instructors', server2);
+instructordb.open(function(err, db) {
+    if(!err) {
+        db.authenticate('hughht5', 'Default11', function(err, success) {
+            console.log("Connected to 'instructors' database");
+            db.collection('instructors', {strict:true}, function(err, collection) {
+                if (err) {
+                    console.log("The 'instructors' collection is empty!");
+                }
+            });
+        });
+    }
+});
+
 
 exports.findClassById = function(req, res) {
     var id = req.params.id;
@@ -94,7 +108,7 @@ exports.updateClass = function(req, res) {
 exports.updateClassIntructorPaidSwitch = function(req, res) {
     var id = req.params.id;
     var coverClass = req.body;
-    console.log('Updating class - instructor paid: ' + id);
+    console.log('Updating class ' + id + ' - instructor paid.');
 
     //check if instructor paid is true or false
     classdb.collection('classes', function(err, collection) {
@@ -109,12 +123,22 @@ exports.updateClassIntructorPaidSwitch = function(req, res) {
             classdb.collection('classes', function(err, collection) {
                 collection.update({'_id':new BSON.ObjectID(id)}, {$set: {instructorPaid: paid}}, {w:1}, function(err, result) {
                     res.send(result);
+                    
+                    //find details for instructor
+                    instructordb.collection('instructors', function(err, instrCollection) {
+                        instrCollection.findOne({'_id':new BSON.ObjectID(item.instructorAssigned)}, function(err, instr) {
+                            //send email to instructor
+                            emailer.sendInstructorPaid(instr, item);
+                        });
+                    });
+
                 });
             });
 
         });
     });
 }
+
 
 exports.updateClassGymInvoicedSwitch = function(req, res) {
     var id = req.params.id;
@@ -181,28 +205,6 @@ exports.deleteClass = function(req, res) {
     });
 }
 
-
-
-//Instructors database
-//var server2 = new Server('localhost', 27017, {auto_reconnect: true});
-
-var server2 = new Server('ds041218.mongolab.com', 41218, {auto_reconnect: true});
-
-instructordb = new Db('instructors', server2);
-
-instructordb.open(function(err, db) {
-    if(!err) {
-        db.authenticate('hughht5', 'Default11', function(err, success) {
-            console.log("Connected to 'instructors' database");
-            db.collection('instructors', {strict:true}, function(err, collection) {
-                if (err) {
-                    console.log("The 'instructors' collection is empty!");
-                }
-            });
-        });
-    }
-});
- 
 
 exports.findInstructorById = function(req, res) {
     var id = req.params.id;
