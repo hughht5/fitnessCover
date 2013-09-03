@@ -55,6 +55,7 @@ exports.addClass = function(req, res) {
     coverClass.instructorPaid = false;
     coverClass.gymInvoiced = false;
     coverClass.paidByGym = false;
+    coverClass.gymLocation = coverClass.gymName.split(' | ')[0];
 
     console.log('Adding class: ' + JSON.stringify(coverClass));
     classdb.collection('classes', function(err, collection) {
@@ -65,17 +66,8 @@ exports.addClass = function(req, res) {
                 console.log('Success: ' + JSON.stringify(result[0]));
                 res.send(result[0]);
 
-                //send email to FitnessCover informing them of new class
-                emailer.send(['Hugh <hughht5@gmail.com>'],
-                    'FitnessCover Alerts - New class created',
-                    JSON.stringify(result[0]));
-
-                //send email to user to inform them Fitness cover will search for cover
-                var recipient = coverClass.firstName + ' ' + coverClass.lastName + '<' + coverClass.email + '>';
-                console.log(recipient);
-                emailer.send([recipient],
-                    'FitnessCover Alerts - We have received your cover request',
-                    'Thank you for using fitness cover. This email should explain the process to the user.');
+                //send emails
+                emailer.sendNewCoverRequest(coverClass);
             }
         });
     });
@@ -258,14 +250,20 @@ exports.findApprovedInstructors = function(req, res) {
 exports.approveInstructor = function(req, res) {
 
     var id = req.params.id;
-
     var instructor = req.body;
 
-    console.log(id);
+    console.log('Instructor ' + id + ' has been approved.');
 
     instructordb.collection('instructors', function(err, collection) {
         collection.update({'_id':new BSON.ObjectID(id)}, {$set: {confirmed: "true"}}, {w:1}, function(err, result) {
             res.send(result);
+
+            //find details for instructor
+            collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, result) {
+                //send email to instructor
+                emailer.sendApproveInstructor(result);
+            });
+            
         });
     });
 }
@@ -282,6 +280,10 @@ exports.addInstructor = function(req, res) {
             } else {
                 console.log('Success: ' + JSON.stringify(result[0]));
                 res.send(result[0]);
+
+                //send emails 
+                emailer.sendNewInstructorSignedUp(instructor);
+
             }
         });
     }); 
