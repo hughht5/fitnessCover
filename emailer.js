@@ -15,7 +15,7 @@ var send = function(recipients, subject, text) {
     //turn array of recipients into comma seperated list
     var recipientsList = '';
     for (var x = 0; x < recipients.length; x++){
-        recipientsList += recipients[x] + ',';
+        recipientsList += recipients[x] + ', ';
     }
     
     smtpTransport.sendMail({

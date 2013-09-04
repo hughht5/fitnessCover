@@ -109,11 +109,10 @@ function assignInstructor(instructorID, classID){
         data: {"instructorAssigned":instructorID},
         success: function(data) {
             console.log(data);
+            
             reloadTable();
-
         }
     });
-
 }
 
 
