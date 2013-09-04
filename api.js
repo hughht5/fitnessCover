@@ -93,7 +93,7 @@ exports.updateClass = function(req, res) {
                 res.send(coverClass);
 
                 //if update assigned an instructor then email them to confirm they got the job
-                if (coverClass.instructorAssigned != null){
+                if (coverClass.instructorAssigned != "false"){
                     db.collection('instructors', function(err, collection) {
                         collection.findOne({'_id':new BSON.ObjectID(coverClass.instructorAssigned)}, function(err, instructor) {
                             //find full class details
@@ -121,28 +121,30 @@ exports.updateClassIntructorPaidSwitch = function(req, res) {
     //check if instructor paid is true or false
     db.collection('classes', function(err, collection) {
         collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
-            var paid;
-            if(item.instructorPaid){
-                paid=false;
-            }else{
-                paid=true;
-            }
+            if (item.instructorAssigned != "false"){
+                var paid;
+                if(item.instructorPaid){
+                    paid=false;
+                }else{
+                    paid=true;
+                }
 
-            db.collection('classes', function(err, collection) {
-                collection.update({'_id':new BSON.ObjectID(id)}, {$set: {instructorPaid: paid}}, {w:1}, function(err, result) {
-                    res.send(result);
-                    
-                    //find details for instructor
-                    db.collection('instructors', function(err, instrCollection) {
-                        instrCollection.findOne({'_id':new BSON.ObjectID(item.instructorAssigned)}, function(err, instr) {
-                            //send email to instructor
-                            emailer.sendInstructorPaid(instr, item);
+                db.collection('classes', function(err, collection) {
+                    collection.update({'_id':new BSON.ObjectID(id)}, {$set: {instructorPaid: paid}}, {w:1}, function(err, result) {
+                        res.send(result);
+                        
+                        //find details for instructor
+                        db.collection('instructors', function(err, instrCollection) {
+                            console.log(item.instructorAssigned);
+                            instrCollection.findOne({'_id':new BSON.ObjectID(item.instructorAssigned)}, function(err, instr) {
+                                //send email to instructor
+                                emailer.sendInstructorPaid(instr, item);
+                            });
                         });
+
                     });
-
                 });
-            });
-
+            }
         });
     });
 }
