@@ -8,32 +8,21 @@ var Server = mongo.Server,
     Db = mongo.Db,
     BSON = mongo.BSONPure;
 
-//classes database
-var server = new Server('ds041168.mongolab.com', 41168, {auto_reconnect: true});
-classdb = new Db('classes', server);
+//connect to database
+var server = new Server('ds043378.mongolab.com', 43378, {auto_reconnect: true});
+db = new Db('dev', server);
 
-classdb.open(function(err, db) {
+//open classDB
+db.open(function(err, db) {
     if(!err) {
         db.authenticate('hughht5', 'Default11', function(err, success) {
-            console.log("Connected to 'classes' database");
+            console.log("Connected to 'classes' collection");
             db.collection('classes', {strict:true}, function(err, collection) {
                 if (err) {
                     console.log("The 'classes' collection is empty!");
                 }
             });
-        });
-    }
-});
-
-
-
-//Instructors database
-var server2 = new Server('ds041218.mongolab.com', 41218, {auto_reconnect: true});
-instructordb = new Db('instructors', server2);
-instructordb.open(function(err, db) {
-    if(!err) {
-        db.authenticate('hughht5', 'Default11', function(err, success) {
-            console.log("Connected to 'instructors' database");
+            console.log("Connected to 'instructors' collection");
             db.collection('instructors', {strict:true}, function(err, collection) {
                 if (err) {
                     console.log("The 'instructors' collection is empty!");
@@ -44,10 +33,11 @@ instructordb.open(function(err, db) {
 });
 
 
+
 exports.findClassById = function(req, res) {
     var id = req.params.id;
     console.log('Retrieving class: ' + id);
-    classdb.collection('classes', function(err, collection) {
+    db.collection('classes', function(err, collection) {
         collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
             res.send(item);
         });
@@ -55,7 +45,7 @@ exports.findClassById = function(req, res) {
 };
  
 exports.findAllClasses = function(req, res) {
-    classdb.collection('classes', function(err, collection) {
+    db.collection('classes', function(err, collection) {
         collection.find().toArray(function(err, items) {
             res.send(items);
         });
@@ -72,7 +62,7 @@ exports.addClass = function(req, res) {
     coverClass.gymLocation = coverClass.gymName.split(' | ')[0];
 
     console.log('Adding class: ' + JSON.stringify(coverClass));
-    classdb.collection('classes', function(err, collection) {
+    db.collection('classes', function(err, collection) {
         collection.insert(coverClass, {safe:true}, function(err, result) {
             if (err) {
                 res.send({'error':'An error has occurred'});
@@ -81,7 +71,7 @@ exports.addClass = function(req, res) {
                 res.send(result[0]);
 
                 //send emails
-                emailer.sendNewCoverRequest(coverClass);
+                emailer.sendNewCoverRequest(coverClass,db);
             }
         });
     });
@@ -92,7 +82,7 @@ exports.updateClass = function(req, res) {
     var coverClass = req.body;
     console.log('Updating class: ' + id);
     console.log(JSON.stringify(coverClass));
-    classdb.collection('classes', function(err, collection) {
+    db.collection('classes', function(err, collection) {
         collection.update({'_id':new BSON.ObjectID(id)}, {$set:coverClass}, {safe:true}, function(err, result) {
             if (err) {
                 console.log('Error updating class: ' + err);
@@ -111,7 +101,7 @@ exports.updateClassIntructorPaidSwitch = function(req, res) {
     console.log('Updating class ' + id + ' - instructor paid.');
 
     //check if instructor paid is true or false
-    classdb.collection('classes', function(err, collection) {
+    db.collection('classes', function(err, collection) {
         collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
             var paid;
             if(item.instructorPaid){
@@ -120,12 +110,12 @@ exports.updateClassIntructorPaidSwitch = function(req, res) {
                 paid=true;
             }
 
-            classdb.collection('classes', function(err, collection) {
+            db.collection('classes', function(err, collection) {
                 collection.update({'_id':new BSON.ObjectID(id)}, {$set: {instructorPaid: paid}}, {w:1}, function(err, result) {
                     res.send(result);
                     
                     //find details for instructor
-                    instructordb.collection('instructors', function(err, instrCollection) {
+                    db.collection('instructors', function(err, instrCollection) {
                         instrCollection.findOne({'_id':new BSON.ObjectID(item.instructorAssigned)}, function(err, instr) {
                             //send email to instructor
                             emailer.sendInstructorPaid(instr, item);
@@ -146,7 +136,7 @@ exports.updateClassGymInvoicedSwitch = function(req, res) {
     console.log('Updating class - gym invoiced: ' + id);
 
     //check if gym invoiced is true or false
-    classdb.collection('classes', function(err, collection) {
+    db.collection('classes', function(err, collection) {
         collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
             var invoiced;
             if(item.gymInvoiced){
@@ -155,7 +145,7 @@ exports.updateClassGymInvoicedSwitch = function(req, res) {
                 invoiced=true;
             }
 
-            classdb.collection('classes', function(err, collection) {
+            db.collection('classes', function(err, collection) {
                 collection.update({'_id':new BSON.ObjectID(id)}, {$set: {gymInvoiced: invoiced}}, {w:1}, function(err, result) {
                     res.send(result);
                 });
@@ -171,7 +161,7 @@ exports.updateClassesPaidByGymSwitch = function(req, res) {
     console.log('Updating class - paid by gym: ' + id);
 
     //check if paid by gym is true or false
-    classdb.collection('classes', function(err, collection) {
+    db.collection('classes', function(err, collection) {
         collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
             var paid;
             if(item.paidByGym){
@@ -180,7 +170,7 @@ exports.updateClassesPaidByGymSwitch = function(req, res) {
                 paid=true;
             }
 
-            classdb.collection('classes', function(err, collection) {
+            db.collection('classes', function(err, collection) {
                 collection.update({'_id':new BSON.ObjectID(id)}, {$set: {paidByGym: paid}}, {w:1}, function(err, result) {
                     res.send(result);
                 });
@@ -193,7 +183,7 @@ exports.updateClassesPaidByGymSwitch = function(req, res) {
 exports.deleteClass = function(req, res) {
     var id = req.params.id;
     console.log('Deleting class: ' + id);
-    classdb.collection('classes', function(err, collection) {
+    db.collection('classes', function(err, collection) {
         collection.remove({'_id':new BSON.ObjectID(id)}, {safe:true}, function(err, result) {
             if (err) {
                 res.send({'error':'An error has occurred - ' + err});
@@ -209,7 +199,7 @@ exports.deleteClass = function(req, res) {
 exports.findInstructorById = function(req, res) {
     var id = req.params.id;
     console.log('Retrieving instructors: ' + id);
-    instructordb.collection('instructors', function(err, collection) {
+    db.collection('instructors', function(err, collection) {
         collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
             res.send(item);
         });
@@ -218,7 +208,7 @@ exports.findInstructorById = function(req, res) {
  
 exports.findAllInstructors = function(req, res) {    
     var query = url.parse(req.url, true).query;
-    instructordb.collection('instructors', function(err, collection) {
+    db.collection('instructors', function(err, collection) {
         collection.find(query).toArray(function(err, items) {
             res.send(items);
         });
@@ -230,7 +220,7 @@ exports.findNewInstructors = function(req, res) {
         'confirmed':"false"    
     };
 
-    instructordb.collection('instructors', function(err, collection) {
+    db.collection('instructors', function(err, collection) {
         collection.find(confirmed).toArray(function(err, items) {
             res.send(items);
         });
@@ -242,7 +232,7 @@ exports.findApprovedInstructors = function(req, res) {
         'confirmed': "true"
     };
 
-    instructordb.collection('instructors', function(err, collection) {
+    db.collection('instructors', function(err, collection) {
         collection.find(approved).toArray(function(err, items) {
             res.send(items);
         });
@@ -256,7 +246,7 @@ exports.approveInstructor = function(req, res) {
 
     console.log('Instructor ' + id + ' has been approved.');
 
-    instructordb.collection('instructors', function(err, collection) {
+    db.collection('instructors', function(err, collection) {
         collection.update({'_id':new BSON.ObjectID(id)}, {$set: {confirmed: "true"}}, {w:1}, function(err, result) {
             res.send(result);
 
@@ -275,7 +265,7 @@ exports.addInstructor = function(req, res) {
     //make instructor uncorfirmed:
     instructor.confirmed="false";
     console.log('Adding instructor: ' + JSON.stringify(instructor));
-    instructordb.collection('instructors', function(err, collection) {
+    db.collection('instructors', function(err, collection) {
         collection.insert(instructor, {safe:true}, function(err, result) {
             if (err) {
                 res.send({'error':'An error has occurred'});
@@ -297,7 +287,7 @@ exports.updateInstructor = function(req, res) {
 
     console.log('Updating instructor: ' + id);
     console.log(JSON.stringify(instructor));
-    instructordb.collection('instructors', function(err, collection) {
+    db.collection('instructors', function(err, collection) {
         collection.update({'_id':new BSON.ObjectID(id)}, {$set:instructor}, {safe:true}, function(err, result) {
 
             if (err) {
@@ -314,7 +304,7 @@ exports.updateInstructor = function(req, res) {
 exports.deleteInstructor = function(req, res) {
     var id = req.params.id;
     console.log('Deleting instructor: ' + id);
-    instructordb.collection('instructors', function(err, collection) {
+    db.collection('instructors', function(err, collection) {
         collection.remove({'_id':new BSON.ObjectID(id)}, {safe:true}, function(err, result) {
             if (err) {
                 res.send({'error':'An error has occurred - ' + err});
