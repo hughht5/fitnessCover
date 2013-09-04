@@ -45,7 +45,7 @@ exports.sendNewCoverRequest = function(coverClass, db){
     //email all instructors who are qualified for this class and work in this area
     db.collection('instructors', function(err, collection) {
       //todo - add approved only
-        collection.find({location: coverClass.gymLocation, qualifications: coverClass.classType}).toArray(function(err, instructors) {
+        collection.find({location: coverClass.gymLocation, qualifications: coverClass.classType, confirmed: "true"}).toArray(function(err, instructors) {
             //intructors object array returned:
             for (var i = 0; i < instructors.length; i++) {
                 recipient = instructors[i].firstName + ' ' + instructors[i].lastName + '<' + instructors[i].email + '>';
