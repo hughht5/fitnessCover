@@ -68,8 +68,6 @@ function addRow(instructor){
 
 function disapproveInstructor(id){
 
-
-
     $.ajax({
         url: "/api/instructors/"+id,
         type: 'PUT',
@@ -88,7 +86,7 @@ function disapproveInstructor(id){
     getInstructors();
 }
 
-function removeInstructor(id){
+/*function removeInstructor(id){
 
 
 
@@ -108,4 +106,4 @@ function removeInstructor(id){
     //reload
     getInstructors();
 }
-
+*/

@@ -84,13 +84,31 @@ exports.updateClass = function(req, res) {
     console.log(JSON.stringify(coverClass));
     db.collection('classes', function(err, collection) {
         collection.update({'_id':new BSON.ObjectID(id)}, {$set:coverClass}, {safe:true}, function(err, result) {
+            
             if (err) {
                 console.log('Error updating class: ' + err);
                 res.send({'error':'An error has occurred'});
             } else {
                 console.log('' + result + ' document(s) updated');
                 res.send(coverClass);
+
+                //if update assigned an instructor then email them to confirm they got the job
+                if (coverClass.instructorAssigned != null){
+                    db.collection('instructors', function(err, collection) {
+                        collection.findOne({'_id':new BSON.ObjectID(coverClass.instructorAssigned)}, function(err, instructor) {
+                            //find full class details
+                            db.collection('classes', function(err, collection) {
+                                collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, myclass) {
+                                    //send email
+                                    emailer.sendInstructorAssigned(instructor, myclass);
+                                });
+                            }); 
+                        });
+                    });
+                }
+
             }
+
         });
     });
 }
@@ -233,7 +251,7 @@ exports.findApprovedInstructors = function(req, res) {
     };
 
     db.collection('instructors', function(err, collection) {
-        collection.find(approved).toArray(function(err, items) {
+        collection.find(approved).sort({ firstName: 1, lastName: 1}).toArray(function(err, items) {
             res.send(items);
         });
     });
@@ -296,6 +314,17 @@ exports.updateInstructor = function(req, res) {
             } else {
                 console.log('' + result + ' document(s) updated');
                 res.send(instructor);
+
+                //if update disapproved an instructor then email them to tell them they are suspended / out.
+                if (instructor.confirmed == "false"){
+                    db.collection('instructors', function(err, collection) {
+                        collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, instructor) {
+                            //send email
+                            emailer.sendInstructorDisapproved(instructor);
+                        });
+                    });
+                }
+
             }
         });
     });
