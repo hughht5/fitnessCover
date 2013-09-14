@@ -91,21 +91,30 @@ function approve (id){
 
 function removeInstructor(id){
 
-    $.ajax({
-        url: "/api/instructors/"+id,
-        type: 'DELETE',
-        success: function(data) {
-            console.log(data);
+    //popup to confirm
+    bootbox.confirm("Are you sure?", function(result) {
+        
+
+        if (result){
+
+            $.ajax({
+                url: "/api/instructors/"+id,
+                type: 'DELETE',
+                success: function(data) {
+                    console.log(data);
+                }
+            });
+
+
+            //now reload the table
+            //remove all rows except title
+            $("#instructors>thead>tr:not(:first)").remove();
+
+            //reload
+            getInstructors();
+
         }
     });
-
-
-    //now reload the table
-    //remove all rows except title
-    $("#instructors>thead>tr:not(:first)").remove();
-
-    //reload
-    getInstructors();
 }
 
 
