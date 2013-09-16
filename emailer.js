@@ -162,7 +162,7 @@ exports.sendInstructorAssigned = function(instructor, coverClass){
     };
 
     console.log('Sending email to user ' + emails.user.recipient + ' to inform them they have been assigned to class: '+ coverClass._id);
-    send([recipient],
+    send([emails.user.recipient],
         'FitnessCover Alerts - Cover class assigned',
         'You have been chosen to cover ' + JSON.stringify(coverClass) + '. If you cannot make it please email / call us on ... else this will count again your performance rating and we may stop working with you...');
 };
