@@ -1,7 +1,7 @@
 var nodemailer = require("nodemailer");
 
 
-var adminEmail = 'Hugh <hughht5@gmail.com>';
+var adminEmail = 'Hugh <angharadmm@yahoo.co.uk>';
 
 //setup smtp
 var smtpTransport = nodemailer.createTransport("SMTP",{
@@ -32,19 +32,50 @@ var send = function(recipient, subject, text) {
 //function to create new cover request emails. Three emails are send - 1 to the admin, 1 to the user who asked for cover.
 //Finally, an email is sent to all the instructors who are qualified to cover that class and work in that area.
 exports.sendNewCoverRequest = function(coverClass, db){
-    //send email to FitnessCover informing them of new class
-    console.log('Sending email to admin Hugh <hughht5@gmail.com> to alert about new cover request.');
-    send([adminEmail],
-        'FitnessCover Alerts - New class created',
-        JSON.stringify(coverClass));
+    
+    var emails = {
+        admin : {
+            recipient: adminEmail,
+            subject: 'FitnessCover Alerts - New class created <'+coverClass._id+'>',
+            text: 'A new cover request has been submitted.\n\n ' + prettifyClass(coverClass),
+        },
+        user:{
+            recipient: coverClass.firstName + ' ' + coverClass.lastName + '<' + coverClass.email + '>',
+            subject: 'FitnessCover Alerts - Thank you for requesting a new cover class! <'+coverClass._id+'>',
+            text: 'Thank you for requesting cover with fitness cover. This email still needs writing.\n\n'+
+                prettifyClass(coverClass)+'\n\n\n\n'+
+                'Thanks,\n'+
+                'Fitness cover'
+        },
+        manager:{
+            recipient: coverClass.gymManager,
+            subject: 'FitnessCover Alerts - We are finding cover for a new class! <'+coverClass._id+'>',
+            text: 'Thank you for requesting cover with fitness cover. This email still needs writing.\n\n'+
+                prettifyClass(coverClass)+'\n\n\n\n'+
+                'Thanks,\n'+
+                'Fitness cover'
+        },
+        instructors:{
+            subject: 'FitnessCover Alerts - New class available! '+coverClass.classDate +' '+coverClass.classTime+' <'+coverClass._id+'>',
+            text: 'Thank you for requesting cover with fitness cover. This email still needs writing.\n\n'+
+                prettifyClass(coverClass)+'\n\n\n\n'+
+                'Thanks,\n'+
+                'Fitness cover'
+        }
+    };
+
+    //send email to FitnessCover informing admin of new class
+    console.log('Sending email to admin ' + emails.admin.recipient + ' to alert about new cover request.');
+    send([emails.admin.recipient], emails.admin.subject, emails.admin.text);
 
     //send email to user to inform them Fitness cover will search for cover
-    var recipient = coverClass.firstName + ' ' + coverClass.lastName + '<' + coverClass.email + '>';
-    console.log('Sending email to user ' + recipient + ' to confirm new cover request.');
-    send([recipient],
-        'FitnessCover Alerts - We have received your cover request',
-        'Thank you for using fitness cover. This email should explain the process to the user. If this request was submitted by mistake please reply to this email at your earliest convenience.');
+    console.log('Sending email to user ' + emails.user.recipient + ' to confirm new cover request.');
+    send([emails.user.recipient], emails.user.subject, emails.user.text);
 
+    //send email to manager to inform them Fitness cover will search for cover
+    console.log('Sending email to manager ' + emails.manager.recipient + ' to confirm new cover request.');
+    send([emails.manager.recipient], emails.manager.subject, emails.manager.text);
+   
     //email all instructors who are qualified for this class and work in this area
     db.collection('instructors', function(err, collection) {
       //todo - add approved only
@@ -56,8 +87,8 @@ exports.sendNewCoverRequest = function(coverClass, db){
             for (var i = 0; i < instructors.length; i++) {
                 recipient = instructors[i].firstName + ' ' + instructors[i].lastName + '<' + instructors[i].email + '>';
                 send(recipient,
-                  'FitnessCover Alerts - New class on date...',
-                  'A new class is available for cover. Would you like to cover it? Be first to reply and we will confirm you have the job ;) payment within 3 days...');
+                  emails.instructors.subject,
+                  emails.instructors.text);
             };
             
         });
@@ -78,7 +109,7 @@ exports.sendNewInstructorSignedUp = function(instructor){
             subject: 'FitnessCover Alerts - Thank you for signing up! <'+instructor._id+'>',
             text: 'Thank you for signing up to fitness cover. We will now review your request and send you an email if your request is approved.\n\n'+
                 'Once approved you will soon be receiving emails asking for cover so remember keep checking your emails as its fastest finger first!\n\n'+
-                'If you think this request was submitted by mistake then please email us at your earliest convenience\n\n\n\n'+
+                'If you think this request was submitted by mistake then please email us at your earliest convenience.\n\n\n\n'+
                 'Thanks,\n'+
                 'Fitness cover'
         }
@@ -104,8 +135,8 @@ exports.sendApproveInstructor = function(instructor){
             text: 'Your request with fitness cover has been approved!\n\n'+
                 'Please read the following...\n\n'+
                 'We will send you cover requests as soon as we receive them and they will all be related to the classes you can teach and your preferred locations.\n\n'+
-                'When you receive a cover request email and you CAN teach the class then respond \'yes\' to the email and it you were the first to reply your details will be sent onto the person who requested the cover\n\n'+
-                'The person who requested the cover will then confirm the class with you and when you turn up to teach you will fill out the invoice with fitness cover details and after confirming this we will pay you within 3 days!\n\n'+
+                'When you receive a cover request email and you CAN teach the class then respond \'yes\' to the email and if you were the first to reply your details will be passed on to the manager of that club.\n\n'+
+                'The manager will then confirm the class and once completed you will be paid you within 3 days!\n\n'+
                 'REMEMBER...by signing up with fitness cover you have agreed that you have...\n\n'+
                 'a ppl licence\n\n'+
                 'Insurance\n\n'+

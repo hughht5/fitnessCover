@@ -8,6 +8,14 @@ var Server = mongo.Server,
     Db = mongo.Db,
     BSON = mongo.BSONPure;
 
+function getManager(gymName){
+    if (gymName == 'London - Central | Fitness First - St Pauls'){
+        return 'angharadmm@yahoo.co.uk';
+    }
+    //no manager found
+    return 'angharadmm@yahoo.co.uk';
+}
+
 //connect to database
 var server = new Server('ds043378.mongolab.com', 43378, {auto_reconnect: true});
 db = new Db('dev', server);
@@ -60,6 +68,7 @@ exports.addClass = function(req, res) {
     coverClass.gymInvoiced = false;
     coverClass.paidByGym = false;
     coverClass.gymLocation = coverClass.gymName.split(' | ')[0];
+    coverClass.gymManager = getManager(coverClass.gymLocation);
 
     console.log('Adding class: ' + JSON.stringify(coverClass));
     db.collection('classes', function(err, collection) {

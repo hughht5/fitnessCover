@@ -39,6 +39,9 @@ $(document).ready(function () {
             },
             classRate: {
                 required: true
+            },
+            classDuration: {
+                required: true
             }
         }
     });
