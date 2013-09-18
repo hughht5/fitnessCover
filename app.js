@@ -102,9 +102,12 @@ app.get('/users', user.list);
 
 
 //classes
+//no auth
+app.post('/api/classes',api.addClass);
+app.get('/claimClass',api.claimClass);
+//auth
 app.get('/api/classes',auth,api.findAllClasses);
 app.get('/api/classes/:id',auth,api.findClassById);
-app.post('/api/classes',api.addClass);
 app.put('/api/classes/:id',auth,api.updateClass);
 app.put('/api/classesIntructorPaidSwitch/:id',auth,api.updateClassIntructorPaidSwitch);
 app.put('/api/classesGymInvoicedSwitch/:id',auth,api.updateClassGymInvoicedSwitch);
@@ -112,11 +115,13 @@ app.put('/api/classesPaidByGymSwitch/:id',auth,api.updateClassesPaidByGymSwitch)
 app.delete('/api/classes/:id',auth,api.deleteClass); //security
 
 //instructors
+//no auth
+app.post('/api/instructors',api.addInstructor);
+//auth
 app.get('/api/instructors',auth,api.findAllInstructors);
 app.get('/api/instructorsNew',auth,api.findNewInstructors);
 app.get('/api/instructorsApproved',auth,api.findApprovedInstructors);
 app.get('/api/instructors/:id',auth,api.findInstructorById);
-app.post('/api/instructors',api.addInstructor);
 app.put('/api/instructorsApprove/:id',auth,api.approveInstructor);
 app.put('/api/instructors/:id',auth,api.updateInstructor);
 app.delete('/api/instructors/:id',auth,api.deleteInstructor); //security

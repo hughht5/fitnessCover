@@ -122,6 +122,43 @@ exports.updateClass = function(req, res) {
     });
 }
 
+
+exports.claimClass = function(req, res) {
+    var url_parts = url.parse(req.url, true);
+    var classid = url_parts.query.classID;
+    var instructorid = url_parts.query.instructorID;
+    console.log('Intructor ' + instructorid + ' has tried to claim class ' + classid);
+
+    db.collection('classes', function(err, collection) {
+        collection.findOne({'_id':new BSON.ObjectID(classid)}, function(err, myclass) {
+            
+            //if class has instructor assigned already then stop here
+            if (myclass.instructorAssigned != false){
+                console.log('Instructor was too slow');
+                res.send('Sorry, someone has already claimed this class. Be quicker next time.')
+            }else{
+                console.log('Updating class ' + classid + ' - instructor ' + instructorid + ' has claimed it.');
+                db.collection('classes', function(err, collection) {
+                    collection.update({'_id':new BSON.ObjectID(classid)}, {$set: {instructorAssigned: instructorid}}, {w:1}, function(err, result) {
+                        res.send('Congratulations. You were first to claim this class. You should receive a confirmation email momentarily.');
+
+                        //send emails to instructor and admin about that class
+                        db.collection('instructors', function(err, collection) {
+                            collection.findOne({'_id':new BSON.ObjectID(instructorid)}, function(err, instructor) {
+                                //send email
+                                emailer.sendInstructorAssigned(instructor, myclass);
+                            });
+                        });
+
+                    });
+                });
+            }
+
+        });
+    });
+};
+
+
 exports.updateClassIntructorPaidSwitch = function(req, res) {
     var id = req.params.id;
     var coverClass = req.body;
