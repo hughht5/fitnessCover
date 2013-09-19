@@ -179,7 +179,7 @@ exports.sendInstructorPaid = function(instructor, coverClass){
             text: 'Dear user,\n\n'+
                 'Fitness cover has just paid you via bank transfer for covering the following class:\n\n'+
                 prettifyClassSimple(coverClass) + '\n\n' +
-                'You should receive the funds immediately although banks may delay the payment for up to 2 hours.\n\n\n\n'+
+                'You should receive the funds immediately although banks may delay the payment for up to 2 hours. If you believe this was sent to you by mistake or if there is a delay of more than 2 hours before you recieve the funds please reply to this email.\n\n\n\n'+
                 'Thanks again,\n'+
                 'Fitness cover'
         }
@@ -197,11 +197,12 @@ exports.sendInstructorAssigned = function(instructor, coverClass){
     var emails = {
         user:{
             recipient: instructor.firstName + ' ' + instructor.lastName + '<' + instructor.email + '>',
-            subject: 'FitnessCover Alerts - You have been chosen to cover a class! <'+instructor._id+'><'+coverClass._id+'>',
+            subject: 'FitnessCover Alerts - You have chosen to cover a class! <'+instructor._id+'><'+coverClass._id+'>',
             text: 'Dear user,\n\n'+
-                'Yay! You have been chosen to cover this class...\n\n'+
-                'TODO we still need to finish this email!\n\n'+
-                'Once this is confirmed fitness cover will pay you within 3 days!\n\n\n\n'+
+                'Thank you for choosing to cover a class through Fitness Cover. Details of the class are below. The gym manager has been notified. Please contact them directly to confirm.\n\n'+
+                'When you arrive at the gym please sign in as usual to inform the manager that you are there, but do not fill out an invoice. We will pay you within 3 working days of covering the class and we will invoice the gym ourselves.\n\n'+
+                prettifyClassSimple(coverClass)+
+                '\n\n\n\n'+
                 'Thanks,\n'+
                 'Fitness cover'
         },
