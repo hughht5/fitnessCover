@@ -133,7 +133,7 @@ exports.claimClass = function(req, res) {
         collection.findOne({'_id':new BSON.ObjectID(classid)}, function(err, myclass) {
             
             //if class has instructor assigned already then stop here
-            if (myclass.instructorAssigned != false){
+            if (myclass.instructorAssigned != false && myclass.instructorAssigned != "false"){
                 console.log('Instructor was too slow');
                 res.send('Sorry, someone has already claimed this class. Be quicker next time.')
             }else{

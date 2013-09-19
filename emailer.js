@@ -39,33 +39,37 @@ exports.sendNewCoverRequest = function(coverClass, db){
         admin : {
             recipient: adminEmail,
             subject: 'FitnessCover Alerts - New class created <'+coverClass._id+'>',
-            text: 'A new cover request has been submitted.\n\n ' + 
+            text: 'Dear admin,\n\n'+
+                'A new cover request has been submitted.\n\n ' + 
                 prettifyClass(coverClass)
         },
         user:{
             recipient: coverClass.firstName + ' ' + coverClass.lastName + '<' + coverClass.email + '>',
             subject: 'FitnessCover Alerts - Thank you for requesting a new cover class! <'+coverClass._id+'>',
-            text: 'Thank you for requesting cover with Fitness Cover.\n\n'+
-                'We have contacted the gym manager to inform them we are organising your cover. Please do not find cover yourself. If we are unable to find cover for you we will sort it out with your manager.\n\n'+
+            text: 'Dear user,\n\n'+
+                'Thank you for requesting cover with Fitness Cover.\n\n'+
+                'We have contacted the gym manager to inform them that we are organising your cover. Please do not find cover yourself. If we are unable to find cover for you we will sort it out with your manager.\n\n'+
                 'Please check the details below are correct and reply to this email if there are any issues.\n\n'+
                 prettifyClassUser(coverClass)+'\n\n\n\n'+
+                //TODO - change class rate for user ;)
                 'Thanks,\n'+
                 'Fitness cover'
         },
         manager:{
             recipient: coverClass.gymManager,
             subject: 'FitnessCover Alerts - We are finding cover for a class! '+coverClass.classDate +' '+coverClass.classTime+' <'+coverClass._id+'>',
-            text: 'Hi,\n\n'+
-                coverClass.firstName + ' ' + coverClass.lastName + ' has asked for a class to be covered.\n\n'
-                + 'We have emailed our qualified instructors and hope to assign one to this class as soon as possible.\n\n'+
-                + 'Details of the class are below. If we are unable to find cover before (TODO - work out timeouts) we will inform you via email.\n\n'+
+            text: 'Dear manager,\n\n'+
+                coverClass.firstName + ' ' + coverClass.lastName + ' has asked for a class to be covered.\n\n'+
+                'We have emailed our qualified instructors and hope to assign one to this class as soon as possible.\n\n'+
+                'Details of the class are below. If we are unable to find cover before (TODO - work out timeouts) we will inform you via email.\n\n'+
                 prettifyClassUser(coverClass)+'\n\n\n\n'+
                 'Thanks,\n'+
                 'Fitness cover'
         },
         instructors:{
             subject: 'FitnessCover Alerts - New class available! '+coverClass.classDate +' '+coverClass.classTime+' <'+coverClass._id+'>',
-            text: 'A new clas is available for cover:\n\n'+
+            text: 'Dear instructor,\n\n'+
+                'A new class is available for cover:\n\n'+
                 prettifyClassSimple(coverClass) + '\n\n' +
                 'If you are able to cover this class please follow this link: '+host+'/claimClass?classID='+coverClass._id+'&instructorID=<<<<InstructorID>>>>\n\n\n\n'+
                 'Thanks,\n'+
@@ -87,7 +91,6 @@ exports.sendNewCoverRequest = function(coverClass, db){
    
     //email all instructors who are qualified for this class and work in this area
     db.collection('instructors', function(err, collection) {
-      //todo - add approved only
         collection.find({location: coverClass.gymLocation, qualifications: coverClass.classType, confirmed: "true"}).toArray(function(err, instructors) {
             
             //intructors object array returned: email each one at a time
@@ -112,12 +115,14 @@ exports.sendNewInstructorSignedUp = function(instructor){
         admin : {
             recipient: adminEmail,
             subject: 'FitnessCover Alerts - New instructor signed up <'+instructor._id+'>',
-            text: 'A new instructor has signed up to Fitness Cover. Please approve / disapprove them.\n\n ' + prettifyInstructor(instructor),
+            text: 'Dear admin,\n\n'+
+                'A new instructor has signed up to Fitness Cover. Please approve / disapprove them.\n\n ' + prettifyInstructor(instructor),
         },
         user:{
             recipient: instructor.firstName + ' ' + instructor.lastName + '<' + instructor.email + '>',
             subject: 'FitnessCover Alerts - Thank you for signing up! <'+instructor._id+'>',
-            text: 'Thank you for signing up to fitness cover. We will now review your request and send you an email if your request is approved.\n\n'+
+            text: 'Dear user,\n\n'+
+                'Thank you for signing up to fitness cover. We will now review your request and send you an email if your request is approved.\n\n'+
                 'Once approved you will soon be receiving emails asking for cover so remember keep checking your emails as its fastest finger first!\n\n'+
                 'Please check the details below are correct and reply to this email if there are any issues:\n\n' +
                 prettifyInstructor(instructor) + '\n\n' +
@@ -144,7 +149,8 @@ exports.sendApproveInstructor = function(instructor){
         user:{
             recipient: instructor.firstName + ' ' + instructor.lastName + '<' + instructor.email + '>',
             subject: 'FitnessCover Alerts - You have been approved! <'+instructor._id+'>',
-            text: 'Your request with fitness cover has been approved!\n\n'+
+            text: 'Dear user,\n\n'+
+                'Your request with fitness cover has been approved!\n\n'+
                 'Please read the following...\n\n'+
                 'We will send you cover requests as soon as we receive them and they will all be related to the classes you can teach and your preferred locations.\n\n'+
                 'When you receive a cover request email and you CAN teach the class then click on the link provided and if you are first to reply you will be assigned to that class and your details will be passed on to the manager of that club.\n\n'+
@@ -170,7 +176,8 @@ exports.sendInstructorPaid = function(instructor, coverClass){
         user:{
             recipient: instructor.firstName + ' ' + instructor.lastName + '<' + instructor.email + '>',
             subject: 'FitnessCover Alerts - You have been Paid! <'+instructor._id+'><'+coverClass._id+'>',
-            text: 'Fitness cover has just paid you via bank transfer for covering the following class:\n\n'+
+            text: 'Dear user,\n\n'+
+                'Fitness cover has just paid you via bank transfer for covering the following class:\n\n'+
                 prettifyClassSimple(coverClass) + '\n\n' +
                 'You should receive the funds immediately although banks may delay the payment for up to 2 hours.\n\n\n\n'+
                 'Thanks again,\n'+
@@ -191,7 +198,8 @@ exports.sendInstructorAssigned = function(instructor, coverClass){
         user:{
             recipient: instructor.firstName + ' ' + instructor.lastName + '<' + instructor.email + '>',
             subject: 'FitnessCover Alerts - You have been chosen to cover a class! <'+instructor._id+'><'+coverClass._id+'>',
-            text: 'Yay! You have been chosen to cover this class...\n\n'+
+            text: 'Dear user,\n\n'+
+                'Yay! You have been chosen to cover this class...\n\n'+
                 'TODO we still need to finish this email!\n\n'+
                 'Once this is confirmed fitness cover will pay you within 3 days!\n\n\n\n'+
                 'Thanks,\n'+
@@ -200,19 +208,20 @@ exports.sendInstructorAssigned = function(instructor, coverClass){
         manager:{
             recipient: coverClass.gymManager,
             subject: 'FitnessCover Alerts - We have found cover for a class! <'+coverClass._id+'>',
-            text: 'Hi,\n\n'+
-                coverClass.firstName + ' ' + coverClass.lastName + ' asked for a class to be covered.\n\n' +
+            text: 'Dear manager,\n\n'+
+                coverClass.firstName + ' ' + coverClass.lastName + ' asked for a class to be covered. We have assigned an instructor to cover this class. Please contact the cover instructor directly to confirm. If there are any issues feel free to reply to this email.\n\n' +
+                'When the cover instructor arrives they have been asked to sign in to make you aware they are covering the class, but not to fill out an invoice. We will pay them, and we will invoice you every month for all the classes for which we have organised cover. Again, if there are any issues please reply to this email.\n\n'+
                 'Class details:\n\n'+
-                prettifyClass(coverClass) + '\n\n'+
-                'We have assigned an instructor to cover this class:\n\n'+
-                prettifyInstructor(instructor)+'\n\n\n\n'+
+                prettifyClassManager(coverClass) + '\n\n'+
+                'Intructor details:\n\n'+
+                prettifyInstructorSimple(instructor)+'\n\n\n\n'+
                 'Thanks,\n'+
                 'Fitness cover'
         },
         admin:{
             recipient: adminEmail,
             subject: 'FitnessCover Alerts - We have found cover for a class! <'+coverClass._id+'>',
-            text: 'Hi,\n\n'+
+            text: 'Dear admin,\n\n'+
                 coverClass.firstName + ' ' + coverClass.lastName + ' asked for a class to be covered.\n\n' +
                 'Class details:\n\n'+
                 prettifyClass(coverClass) + '\n\n'+
@@ -240,7 +249,8 @@ exports.sendInstructorDisapproved = function(instructor){
         user:{
             recipient: instructor.firstName + ' ' + instructor.lastName + '<' + instructor.email + '>',
             subject: 'FitnessCover Alerts - You have been disapproved! <'+instructor._id+'>',
-            text: 'We are sorry to inform you that you have been suspended from FitnessCover!\n\n'+
+            text: 'Dear user,\n\n'+
+                'We are sorry to inform you that you have been suspended from FitnessCover!\n\n'+
                 'You should have been informed about why this is already.\n\n\n\n'+
                 'Thanks again,\n'+
                 'Fitness cover'
@@ -268,6 +278,19 @@ function prettifyInstructor(instructor){
             prettyPrint += '\t' + prop + ' = ' + instructor[prop] + '\n';
         }
     }
+
+
+    return prettyPrint;
+}
+
+function prettifyInstructorSimple(instructor){
+
+    var prettyPrint = '';
+    
+    prettyPrint += '\n\t First Name = ' + instructor.firstName;
+    prettyPrint += '\n\t Last Name = ' + instructor.lastName;
+    prettyPrint += '\n\t Email = ' + instructor.email;
+    prettyPrint += '\n\t Mobile = ' + instructor.mobile;
 
 
     return prettyPrint;
@@ -328,6 +351,28 @@ function prettifyClassSimple(coverClass){
     prettyPrint += '\n\t Gym Manager = ' + coverClass.gymManager;
     prettyPrint += '\n\t Notes = ' + coverClass.notes;
 
+
+
+    return prettyPrint;
+}
+
+function prettifyClassManager(coverClass){
+
+    var prettyPrint = '';
+    
+    prettyPrint += '\n\t First Name = ' + coverClass.firstName;
+    prettyPrint += '\n\t Last Name = ' + coverClass.lastName;
+    prettyPrint += '\n\t Email = ' + coverClass.email;
+    prettyPrint += '\n\t Mobile = ' + coverClass.mobile;
+    prettyPrint += '\n\t Class Date = ' + coverClass.classDate;
+    prettyPrint += '\n\t Class Time = ' + coverClass.classTime;
+    prettyPrint += '\n\t Class Duration = ' + coverClass.classDuration;
+    prettyPrint += '\n\t Class Rate = £' + coverClass.classRate
+    prettyPrint += '\n\t Class Type = ' + coverClass.classType;
+    prettyPrint += '\n\t Gym Name = ' + coverClass.gymName;
+    prettyPrint += '\n\t Gym Manager = ' + coverClass.gymManager;
+    prettyPrint += '\n\t Reason for Cover = ' + coverClass.reason;
+    prettyPrint += '\n\t Notes = ' + coverClass.notes;
 
 
     return prettyPrint;
