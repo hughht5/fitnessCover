@@ -2,8 +2,13 @@ var nodemailer = require("nodemailer");
 
 
 var adminEmail = 'Annie <angharadmm@yahoo.co.uk>';
-var host = '127.0.0.1';
 var fee = 0.2; //20% fee
+
+//dev
+var host = '127.0.0.1';
+
+//production
+//var host = 'www.fitnesscover.co.uk';
 
 //setup smtp
 var smtpTransport = nodemailer.createTransport("SMTP",{

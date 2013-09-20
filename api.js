@@ -8,6 +8,31 @@ var Server = mongo.Server,
     Db = mongo.Db,
     BSON = mongo.BSONPure;
 
+//Server access
+/*
+IP Address: 146.185.143.47
+Username: root
+Password: skmtgvqztttl
+//*/
+
+//production
+/*
+var mongoUser = 'fitnessCover';
+var mongoPass = 'rygDwXu3kQ92DBFWQ8ft';
+var mongoURL = 'ds047338-a0.mongolab.com';
+var mongoPort = 47338;
+var mongoDBName = 'production';
+//*/
+
+//dev
+///*
+var mongoUser = 'hughht5';
+var mongoPass = 'Default11';
+var mongoURL = 'ds043378.mongolab.com';
+var mongoPort = 43378;
+var mongoDBName = 'dev';
+//*/
+
 function getManager(gymName){
     if (gymName == 'London - Central | Fitness First - St Pauls'){
         return 'angharadmm@yahoo.co.uk';
@@ -17,13 +42,13 @@ function getManager(gymName){
 }
 
 //connect to database
-var server = new Server('ds043378.mongolab.com', 43378, {auto_reconnect: true});
-db = new Db('dev', server);
+var server = new Server(mongoURL, mongoPort, {auto_reconnect: true});
+db = new Db(mongoDBName, server);
 
 //open classDB
 db.open(function(err, db) {
     if(!err) {
-        db.authenticate('hughht5', 'Default11', function(err, success) {
+        db.authenticate(mongoUser, mongoPass, function(err, success) {
             console.log("Connected to 'classes' collection");
             db.collection('classes', {strict:true}, function(err, collection) {
                 if (err) {
