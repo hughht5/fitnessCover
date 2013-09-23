@@ -192,7 +192,7 @@ exports.updateClassIntructorPaidSwitch = function(req, res) {
     //check if instructor paid is true or false
     db.collection('classes', function(err, collection) {
         collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
-            if (item.instructorAssigned != "false"){
+            if (item.instructorAssigned != "false" && item.instructorAssigned != false){
                 var paid;
                 if(item.instructorPaid){
                     paid=false;
