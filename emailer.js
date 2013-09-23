@@ -16,7 +16,9 @@ var smtppassword = "CQEFy3hFpM57vdVYMSudZw";
 //var smtppassword = "EVIqj1_zZMIp5Vf3b8RgDg";
 
 var smtpTransport = nodemailer.createTransport("SMTP",{
-    service: "Mandrill",
+    //service: "Mandrill",
+    host: "smtp.mandrillapp.com",
+    port: 587,
     auth: {
         user: "hughht5@gmail.com",
         pass: smtppassword
