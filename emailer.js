@@ -1,6 +1,4 @@
 var nodemailer = require("nodemailer");
-nodemailer.sendmail = true;
-
 
 var adminEmail = 'Annie <angharadmm@yahoo.co.uk>';
 var fee = 0.2; //20% fee
