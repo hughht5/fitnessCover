@@ -63,7 +63,7 @@ function submitCover(){
     $.post("/api/classes", $("#getCoverForm").serialize(), function(data){
         
         //notify user the request has been saved
-    	bootbox.alert("Thank you, your request for cover has been saved.");
+    	bootbox.alert("Thank you, your request for cover has been saved. We will email you to confirm.");
     	
     	//reset the form
     	document.getElementById("getCoverForm").reset();

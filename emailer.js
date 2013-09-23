@@ -11,11 +11,16 @@ var host = '127.0.0.1';
 //var host = 'www.fitnesscover.co.uk';
 
 //setup smtp
+//dev pass
+var smtppassword = "CQEFy3hFpM57vdVYMSudZw";
+//prod pass
+//var smtppassword = "EVIqj1_zZMIp5Vf3b8RgDg";
+
 var smtpTransport = nodemailer.createTransport("SMTP",{
     service: "Mandrill",
     auth: {
         user: "hughht5@gmail.com",
-        pass: "CQEFy3hFpM57vdVYMSudZw"
+        pass: smtppassword
     }
 });
 
