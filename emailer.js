@@ -31,7 +31,6 @@ var send = function(recipient, subject, text) {
     }else{
         toEmail = recipient;
     }
-    console.log(toEmail);
 
     mailer.send(
       { host:           "smtp.mandrillapp.com"
@@ -47,7 +46,7 @@ var send = function(recipient, subject, text) {
         if(err){
           console.log(err);
         }else{
-           console.log("Mandrill mailer.js - message sent.");
+           console.log("Mandrill mailer.js - message sent to: " + toEmail);
         }
       }
     );
