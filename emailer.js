@@ -1,5 +1,5 @@
-//var nodemailer = require("nodemailer");
-var emailjs = require("emailjs");
+var nodemailer = require("nodemailer");
+//var emailjs = require("emailjs");
 
 var adminEmail = 'Annie <angharadmm@yahoo.co.uk>';
 var fee = 0.2; //20% fee
@@ -16,7 +16,7 @@ var smtppassword = "CQEFy3hFpM57vdVYMSudZw";
 //prod pass
 //var smtppassword = "EVIqj1_zZMIp5Vf3b8RgDg";
 
-
+/*
 var emailjsServer = emailjs.server.connect({
     user:"hughht5@gmail.com",
     password:smtppassword,
@@ -35,16 +35,18 @@ var send = function(recipient, subject, text) {
        if(error){
            console.log(error);
        }else{
-           console.log("Emailer.js - message sent: " + message);
+           console.log("Emailer.js - message sent.");
        }
     });
 };
+//*/
 
-/* //nodemailer
+//nodemailer
 var smtpTransport = nodemailer.createTransport("SMTP",{
     service: "Mandrill",
     //host: "smtp.mandrillapp.com",
     //port: 587,
+    //pass: smtppassword
     auth: {
         user: "hughht5@gmail.com",
         pass: smtppassword
@@ -66,7 +68,7 @@ var send = function(recipient, subject, text) {
            console.log("Emailer.js - message sent: " + response.message);
        }
     });
-};*/
+};//*/
 
 //function to create new cover request emails. Three emails are send - 1 to the admin, 1 to the user who asked for cover.
 //Finally, an email is sent to all the instructors who are qualified to cover that class and work in that area.
