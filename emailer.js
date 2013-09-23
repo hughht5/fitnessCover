@@ -1,4 +1,5 @@
 var nodemailer = require("nodemailer");
+nodemailer.sendmail = true;
 
 
 var adminEmail = 'Annie <angharadmm@yahoo.co.uk>';
@@ -23,6 +24,7 @@ var smtpTransport = nodemailer.createTransport("SMTP",{
         pass: smtppassword
     }
 });
+
 
 //function to send an email
 var send = function(recipient, subject, text) {
