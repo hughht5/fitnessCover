@@ -1,4 +1,4 @@
-var nodemailer = require("nodemailer");
+//var nodemailer = require("nodemailer");
 //var emailjs = require("emailjs");
 
 var adminEmail = 'Annie <angharadmm@yahoo.co.uk>';
@@ -15,6 +15,44 @@ var host = '127.0.0.1';
 var smtppassword = "CQEFy3hFpM57vdVYMSudZw";
 //prod pass
 //var smtppassword = "EVIqj1_zZMIp5Vf3b8RgDg";
+
+
+var mailer   = require("mailer")
+  , mandrillUsername = "hughht5@gmail.com"
+  , mandrillPassword = smtppassword;
+
+
+
+var send = function(recipient, subject, text) {
+
+    var toEmail;
+    if( typeof recipient === 'object' ) {
+       toEmail = recipient[0];
+    }else{
+        toEmail = recipient;
+    }
+    console.log(toEmail);
+
+    mailer.send(
+      { host:           "smtp.mandrillapp.com"
+      , port:           25
+      , to:             toEmail
+      , from:           "info@fitnesscover.co.uk"
+      , subject:        subject
+      , body:           text
+      , authentication: "login"
+      , username:       mandrillUsername
+      , password:       mandrillPassword
+      }, function(err, result){
+        if(err){
+          console.log(err);
+        }else{
+           console.log("Mandrill mailer.js - message sent.");
+        }
+      }
+    );
+};
+//*/
 
 /*
 var emailjsServer = emailjs.server.connect({
@@ -41,12 +79,10 @@ var send = function(recipient, subject, text) {
 };
 //*/
 
+/*
 //nodemailer
 var smtpTransport = nodemailer.createTransport("SMTP",{
     service: "Mandrill",
-    //host: "smtp.mandrillapp.com",
-    //port: 587,
-    //pass: smtppassword
     auth: {
         user: "hughht5@gmail.com",
         pass: smtppassword
@@ -83,7 +119,7 @@ exports.sendNewCoverRequest = function(coverClass, db){
                 prettifyClass(coverClass)
         },
         user:{
-            recipient: coverClass.firstName + ' ' + coverClass.lastName + '<' + coverClass.email + '>',
+            recipient: coverClass.email,
             subject: 'FitnessCover Alerts - Thank you for requesting a new cover class! <'+coverClass._id+'>',
             text: 'Dear user,\n\n'+
                 'Thank you for requesting cover with Fitness Cover.\n\n'+
@@ -136,7 +172,7 @@ exports.sendNewCoverRequest = function(coverClass, db){
             console.log('emailing '+instructors.length+' instructors to notify class is available for cover.');
 
             for (var i = 0; i < instructors.length; i++) {
-                recipient = instructors[i].firstName + ' ' + instructors[i].lastName + '<' + instructors[i].email + '>';
+                recipient = instructors[i].email;
                 var emailText = emails.instructors.text.replace('<<<<InstructorID>>>>',instructors[i]._id);
                 send(recipient, emails.instructors.subject, emailText);
             };
@@ -158,7 +194,7 @@ exports.sendNewInstructorSignedUp = function(instructor){
                 'A new instructor has signed up to Fitness Cover. Please approve / disapprove them.\n\n ' + prettifyInstructor(instructor),
         },
         user:{
-            recipient: instructor.firstName + ' ' + instructor.lastName + '<' + instructor.email + '>',
+            recipient: instructor.email,
             subject: 'FitnessCover Alerts - Thank you for signing up! <'+instructor._id+'>',
             text: 'Dear user,\n\n'+
                 'Thank you for signing up to fitness cover. We will now review your request and send you an email if your request is approved.\n\n'+
@@ -186,7 +222,7 @@ exports.sendApproveInstructor = function(instructor){
 
     var emails = {
         user:{
-            recipient: instructor.firstName + ' ' + instructor.lastName + '<' + instructor.email + '>',
+            recipient: instructor.email,
             subject: 'FitnessCover Alerts - You have been approved! <'+instructor._id+'>',
             text: 'Dear user,\n\n'+
                 'Your request with fitness cover has been approved!\n\n'+
@@ -213,7 +249,7 @@ exports.sendInstructorPaid = function(instructor, coverClass){
 
     var emails = {
         user:{
-            recipient: instructor.firstName + ' ' + instructor.lastName + '<' + instructor.email + '>',
+            recipient: instructor.email,
             subject: 'FitnessCover Alerts - You have been Paid! <'+instructor._id+'><'+coverClass._id+'>',
             text: 'Dear user,\n\n'+
                 'Fitness cover has just paid you via bank transfer for covering the following class:\n\n'+
@@ -235,7 +271,7 @@ exports.sendInstructorAssigned = function(instructor, coverClass){
 
     var emails = {
         user:{
-            recipient: instructor.firstName + ' ' + instructor.lastName + '<' + instructor.email + '>',
+            recipient: instructor.email,
             subject: 'FitnessCover Alerts - You have chosen to cover a class! <'+instructor._id+'><'+coverClass._id+'>',
             text: 'Dear user,\n\n'+
                 'Thank you for choosing to cover a class through Fitness Cover. Details of the class are below. The gym manager has been notified. Please contact them directly to confirm.\n\n'+
@@ -287,7 +323,7 @@ exports.sendInstructorDisapproved = function(instructor){
 
     var emails = {
         user:{
-            recipient: instructor.firstName + ' ' + instructor.lastName + '<' + instructor.email + '>',
+            recipient: instructor.email,
             subject: 'FitnessCover Alerts - You have been disapproved! <'+instructor._id+'>',
             text: 'Dear user,\n\n'+
                 'We are sorry to inform you that you have been suspended from FitnessCover!\n\n'+
