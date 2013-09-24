@@ -199,7 +199,7 @@ exports.sendNewInstructorSignedUp = function(instructor){
                 'Thank you for signing up to fitness cover. We will now review your request and send you an email if your request is approved.\n\n'+
                 'Once approved you will soon be receiving emails asking for cover so remember keep checking your emails as its fastest finger first!\n\n'+
                 'Please check the details below are correct and reply to this email if there are any issues:\n\n' +
-                prettifyInstructor(instructor) + '\n\n' +
+                prettifyInstructorUser(instructor) + '\n\n' +
                 'If you think this request was submitted by mistake then please reply to this email at your earliest convenience.\n\n\n\n'+
                 'Thanks,\n'+
                 'Fitness cover'
@@ -351,6 +351,27 @@ function prettifyInstructor(instructor){
             });
         }else{
             prettyPrint += '\t' + prop + ' = ' + instructor[prop] + '\n';
+        }
+    }
+
+
+    return prettyPrint;
+}
+
+function prettifyInstructorUser(instructor){
+
+    var prettyPrint = '';
+
+    for (var prop in instructor){
+        if (prop != 'confirmed'){
+            if( Object.prototype.toString.call( prop ) === '[object Array]' ) {
+                prettyPrint += '\t' + prop + ' = ';
+                prop.forEach(function(entry){
+                    prettyPrint += ' ' + entry
+                });
+            }else{
+                prettyPrint += '\t' + prop + ' = ' + instructor[prop] + '\n';
+            }
         }
     }
 
