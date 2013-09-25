@@ -202,8 +202,9 @@ exports.updateClassIntructorPaidSwitch = function(req, res) {
 
                 db.collection('classes', function(err, collection) {
                     collection.update({'_id':new BSON.ObjectID(id)}, {$set: {instructorPaid: paid}}, {w:1}, function(err, result) {
-                        res.send(result);
                         
+                        res.send(JSON.stringify(result));
+
                         //find details for instructor
                         db.collection('instructors', function(err, instrCollection) {
                             console.log(item.instructorAssigned);
@@ -212,9 +213,10 @@ exports.updateClassIntructorPaidSwitch = function(req, res) {
                                 emailer.sendInstructorPaid(instr, item);
                             });
                         });
-
                     });
                 });
+            }else{
+                res.send('ERROR: No instructor assigned.');
             }
         });
     });
@@ -238,7 +240,7 @@ exports.updateClassGymInvoicedSwitch = function(req, res) {
 
             db.collection('classes', function(err, collection) {
                 collection.update({'_id':new BSON.ObjectID(id)}, {$set: {gymInvoiced: invoiced}}, {w:1}, function(err, result) {
-                    res.send(result);
+                    res.send(JSON.stringify(result));
                 });
             });
 
@@ -263,7 +265,7 @@ exports.updateClassesPaidByGymSwitch = function(req, res) {
 
             db.collection('classes', function(err, collection) {
                 collection.update({'_id':new BSON.ObjectID(id)}, {$set: {paidByGym: paid}}, {w:1}, function(err, result) {
-                    res.send(result);
+                    res.send(JSON.stringify(result));
                 });
             });
 
@@ -280,7 +282,7 @@ exports.deleteClass = function(req, res) {
                 res.send({'error':'An error has occurred - ' + err});
             } else {
                 console.log('' + result + ' document(s) deleted');
-                res.send(req.body);
+                res.send(JSON.stringify(result));
             }
         });
     });

@@ -123,11 +123,14 @@ function paidByGymSwitch(id){
         type: 'PUT',
         success: function(data) {
             console.log(data);
+            if(data.substring(0, 6) == "ERROR:"){
+                alert(data);
+            }else{
+                //now reload the table
+                reloadTable();
+            }
         }
     });
-
-    //now reload the table
-    reloadTable();
 }
 
 
@@ -138,11 +141,14 @@ function gymInvoicedSwitch(id){
         type: 'PUT',
         success: function(data) {
             console.log(data);
+            if(data.substring(0, 6) == "ERROR:"){
+                alert(data);
+            }else{
+                //now reload the table
+                reloadTable();
+            }
         }
     });
-
-    //now reload the table
-    reloadTable();
 }
 
 function instructorPaidSwitch(id){
@@ -152,11 +158,16 @@ function instructorPaidSwitch(id){
         type: 'PUT',
         success: function(data) {
             console.log(data);
+            if(data.substring(0, 6) == "ERROR:"){
+                alert(data);
+            }else{
+                //now reload the table
+                reloadTable();
+            }
         }
     });
 
-    //now reload the table
-    reloadTable();
+    
 }
 
 function removeClass(id){
@@ -166,12 +177,14 @@ function removeClass(id){
         type: 'DELETE',
         success: function(data) {
             console.log(data);
+            if(data.substring(0, 6) == "ERROR:"){
+                alert(data);
+            }else{
+                //now reload the table
+                reloadTable();
+            }
         }
     });
-
-
-    //now reload the table
-    reloadTable();
 }
 
 function reloadTable(){
