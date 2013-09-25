@@ -79,7 +79,7 @@ exports.findClassById = function(req, res) {
  
 exports.findAllClasses = function(req, res) {
     db.collection('classes', function(err, collection) {
-        collection.find().toArray(function(err, items) {
+        collection.find().sort('classDate').toArray(function(err, items) {
             res.send(items);
         });
     });
