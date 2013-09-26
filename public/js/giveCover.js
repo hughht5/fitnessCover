@@ -58,10 +58,10 @@ function submitInstructor(){
     $.post("/api/instructors", $("#giveCoverForm").serialize(), function(data){
         
         //notify user the request has been saved
-    	bootbox.alert("Thank you, we will contact you shortly and add you to our books. We will email you to confirm.");
-    	
-    	//reset the form
-    	document.getElementById("giveCoverForm").reset();
+    	bootbox.alert("Thank you, we will contact you shortly and add you to our books. We will email you to confirm.", function(){
+            //redirect to home
+            window.location.href = "../";
+        });
     	
     });
 
